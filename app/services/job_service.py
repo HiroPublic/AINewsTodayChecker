@@ -10,7 +10,7 @@ from app.services.claim_extractor import extract_claims
 from app.services.claim_parser import parse_claim
 from app.services.fetch_service import FetchService
 from app.services.normalize_service import NormalizeService
-from app.services.report_builder import build_report_messages, should_notify
+from app.services.report_builder import build_report_messages
 from app.services.scoring_service import calculate_overall_score
 from app.services.verifier_service import verify_claim
 
@@ -66,15 +66,6 @@ class JobService:
             return DailyRunResult(
                 status="preview",
                 detail="preview generated",
-                notified=False,
-                episode=episode,
-                preview_messages=messages,
-            )
-        if not should_notify(verdicts, overall_score, self._notify_score_threshold):
-            LOGGER.info("Notification conditions not met; state will still not be updated")
-            return DailyRunResult(
-                status="analyzed",
-                detail="notification threshold not met",
                 notified=False,
                 episode=episode,
                 preview_messages=messages,
