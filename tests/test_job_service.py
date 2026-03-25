@@ -7,6 +7,8 @@ import pytest
 
 from app.clients.podcast_client import RawEpisode
 from app.persistence.state_store import StateStore
+from app.schemas.claim import ParsedClaim
+from app.schemas.verdict import ClaimVerdict, VerdictLabel
 from app.services.job_service import JobService
 from app.services.normalize_service import NormalizeService
 
@@ -45,11 +47,32 @@ class FakeFetchService:
         )
 
 
+class FakeEpisodeVerifier:
+    """Return deterministic verdicts without external I/O."""
+
+    def verify_episode(self, episode) -> list[ClaimVerdict]:
+        return [
+            ClaimVerdict(
+                claim=ParsedClaim(raw_text="アップル、SiriにGPT-5を完全統合と発表（3月23日）", order_index=1),
+                label=VerdictLabel.MISLEADING,
+                score=40,
+                reason="強い断定表現を含みます。",
+            ),
+            ClaimVerdict(
+                claim=ParsedClaim(raw_text="Anthropic、1000万トークン対応のClaude 4公開（3月22日）", order_index=2),
+                label=VerdictLabel.FALSE,
+                score=15,
+                reason="数値が不自然です。",
+            ),
+        ]
+
+
 def test_job_service_saves_state_after_notification(tmp_path: Path) -> None:
     notifier = FakeSlackNotifier()
     service = JobService(
         fetch_service=FakeFetchService(),
         normalize_service=NormalizeService(),
+        episode_verifier=FakeEpisodeVerifier(),
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=notifier,
         notify_score_threshold=60,
@@ -71,6 +94,7 @@ def test_job_service_skips_duplicate_hash(tmp_path: Path) -> None:
     service = JobService(
         fetch_service=FakeFetchService(),
         normalize_service=NormalizeService(),
+        episode_verifier=FakeEpisodeVerifier(),
         state_store=state_store,
         slack_notifier=notifier,
         notify_score_threshold=60,
@@ -88,6 +112,7 @@ def test_job_service_preview_does_not_send_or_save_state(tmp_path: Path) -> None
     service = JobService(
         fetch_service=FakeFetchService(),
         normalize_service=NormalizeService(),
+        episode_verifier=FakeEpisodeVerifier(),
         state_store=StateStore(state_path),
         slack_notifier=notifier,
         notify_score_threshold=60,
@@ -107,6 +132,7 @@ def test_job_service_preview_can_target_episode_number(tmp_path: Path) -> None:
     service = JobService(
         fetch_service=FakeFetchService(),
         normalize_service=NormalizeService(),
+        episode_verifier=FakeEpisodeVerifier(),
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=FakeSlackNotifier(),
         notify_score_threshold=60,
@@ -124,6 +150,7 @@ def test_job_service_preview_rejects_missing_episode_number(tmp_path: Path) -> N
     service = JobService(
         fetch_service=FakeFetchService(),
         normalize_service=NormalizeService(),
+        episode_verifier=FakeEpisodeVerifier(),
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=FakeSlackNotifier(),
         notify_score_threshold=60,

@@ -15,6 +15,8 @@ class Settings(BaseSettings):
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
     database_url: str = Field(default="sqlite:///./app.db", alias="DATABASE_URL")
     slack_webhook_url: str = Field(default="", alias="SLACK_WEBHOOK_URL")
+    perplexity_api_key: str = Field(default="", alias="PERPLEXITY_API_KEY")
+    perplexity_model: str = Field(default="sonar", alias="PERPLEXITY_MODEL")
     openai_api_key: str = Field(default="", alias="OPENAI_API_KEY")
     notify_score_threshold: int = Field(default=60, alias="NOTIFY_SCORE_THRESHOLD")
     state_file_path: Path = Field(default=Path(".state/last_run.json"), alias="STATE_FILE_PATH")

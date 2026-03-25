@@ -11,6 +11,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from app.clients.podcast_client import PodcastClient
+from app.clients.perplexity_client import PerplexityClient
 from app.clients.slack_client import SlackClient
 from app.core.config import get_settings
 from app.core.logging import configure_logging
@@ -19,6 +20,7 @@ from app.persistence.state_store import StateStore
 from app.services.fetch_service import FetchService
 from app.services.job_service import JobService
 from app.services.normalize_service import NormalizeService
+from app.services.verifier_service import EpisodeVerifierService
 
 
 LOGGER = logging.getLogger(__name__)
@@ -39,6 +41,12 @@ def build_job_service() -> JobService:
             )
         ),
         normalize_service=NormalizeService(),
+        episode_verifier=EpisodeVerifierService(
+            perplexity_client=PerplexityClient(
+                api_key=settings.perplexity_api_key,
+                model=settings.perplexity_model,
+            )
+        ),
         state_store=StateStore(settings.state_file_path),
         slack_notifier=notifier,
         notify_score_threshold=settings.notify_score_threshold,

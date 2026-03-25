@@ -6,13 +6,11 @@ from dataclasses import dataclass
 from app.notifier.slack import SlackNotifier
 from app.persistence.state_store import RunState, StateStore
 from app.schemas.episode import Episode
-from app.services.claim_extractor import extract_claims
-from app.services.claim_parser import parse_claim
 from app.services.fetch_service import FetchService
 from app.services.normalize_service import NormalizeService
 from app.services.report_builder import build_report_messages
 from app.services.scoring_service import calculate_overall_score
-from app.services.verifier_service import verify_claim
+from app.services.verifier_service import EpisodeVerifierService
 
 
 LOGGER = logging.getLogger(__name__)
@@ -37,12 +35,14 @@ class JobService:
         self,
         fetch_service: FetchService,
         normalize_service: NormalizeService,
+        episode_verifier: EpisodeVerifierService,
         state_store: StateStore,
         slack_notifier: SlackNotifier | None,
         notify_score_threshold: int,
     ) -> None:
         self._fetch_service = fetch_service
         self._normalize_service = normalize_service
+        self._episode_verifier = episode_verifier
         self._state_store = state_store
         self._slack_notifier = slack_notifier
         self._notify_score_threshold = notify_score_threshold
@@ -57,8 +57,7 @@ class JobService:
             LOGGER.info("Duplicate episode detected; skipping notification")
             return DailyRunResult(status="skipped", detail="duplicate episode hash", notified=False, episode=episode)
 
-        claims = [parse_claim(claim) for claim in extract_claims(episode.summary_text)]
-        verdicts = [verify_claim(claim) for claim in claims]
+        verdicts = self._episode_verifier.verify_episode(episode)
         overall_score = calculate_overall_score(verdicts)
         messages = build_report_messages(episode, verdicts, overall_score)
         if preview_only:
