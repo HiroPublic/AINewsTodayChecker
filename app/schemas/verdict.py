@@ -22,6 +22,7 @@ class ClaimVerdict(BaseModel):
 
     claim: ParsedClaim
     label: VerdictLabel
+    display_label_ja: str = ""
     score: int
     reason: str
 

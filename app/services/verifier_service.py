@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass
+from datetime import timedelta
 from pathlib import Path
 
 from pydantic import BaseModel, Field, ValidationError
@@ -31,8 +32,20 @@ Rules:
 - Penalize exaggeration, weak sourcing, unrealistic numbers, rumor-as-fact wording, and date inconsistencies.
 - Prefer primary and official sources.
 - Extract 3 to 7 key factual claims.
+- Return each `claim_text` in the original Japanese from the target article. Do not translate, paraphrase into English, or append English translations.
 - Keep claim_reason under 220 characters.
 - Keep overall_summary under 320 characters.
+- Keep `label` in English for machine parsing, but output `display_label_ja` in Japanese for user-facing results.
+- Use these Japanese display labels by default:
+  - TRUE -> 正確
+  - MOSTLY_TRUE -> 概ね正確
+  - UNCONFIRMED -> 未確認
+  - MISLEADING -> 誤解を招く
+  - FALSE -> 誤り
+- Judge stale-news status relative to the episode published date provided in the user prompt.
+- Only set `display_label_ja` to `既報` when the content itself is not wrong, but the news is old and the supporting article/event date is on or before the cutoff date defined as two calendar days before the episode published date.
+- Do not use `既報` for items dated the day before the episode published date.
+- Do not change the score only because of this display label.
 - Use score ranges consistently by label:
   - TRUE: 85-100
   - MOSTLY_TRUE: 70-84
@@ -55,6 +68,7 @@ Return exactly:
     {{
       "claim_text": "",
       "label": "",
+      "display_label_ja": "",
       "score": 0,
       "claim_reason": "",
       "risk_flags": [],
@@ -79,6 +93,12 @@ Allowed labels:
 Article title:
 {title}
 
+Episode published date:
+{episode_published_date}
+
+Stale-news cutoff date for `既報`:
+{stale_cutoff_date}
+
 Article URL:
 {url}
 
@@ -100,6 +120,7 @@ class EvaluatedClaim(BaseModel):
 
     claim_text: str
     label: VerdictLabel
+    display_label_ja: str = ""
     score: int
     claim_reason: str
     risk_flags: list[str] = Field(default_factory=list)
@@ -134,8 +155,12 @@ class EpisodeVerifierService:
         return self._verify_rule_based(episode)
 
     def _verify_with_perplexity(self, episode: Episode) -> list[ClaimVerdict]:
+        episode_published_date = episode.published_at.date()
+        stale_cutoff_date = episode_published_date - timedelta(days=2)
         user_prompt = USER_PROMPT_TEMPLATE.format(
             title=episode.title,
+            episode_published_date=episode_published_date.isoformat(),
+            stale_cutoff_date=stale_cutoff_date.isoformat(),
             url=episode.episode_url,
             text=episode.summary_text,
         )
@@ -145,6 +170,8 @@ class EpisodeVerifierService:
                 "system_prompt": SYSTEM_PROMPT,
                 "user_prompt": user_prompt,
                 "episode_title": episode.title,
+                "episode_published_date": episode_published_date.isoformat(),
+                "stale_cutoff_date": stale_cutoff_date.isoformat(),
                 "episode_url": episode.episode_url,
             },
         )
@@ -175,6 +202,10 @@ class EpisodeVerifierService:
                 ClaimVerdict(
                     claim=parsed_claim,
                     label=evaluated_claim.label,
+                    display_label_ja=_resolve_display_label_ja(
+                        evaluated_claim.label,
+                        evaluated_claim.display_label_ja,
+                    ),
                     score=_normalize_score(evaluated_claim.label, evaluated_claim.score),
                     reason=evaluated_claim.claim_reason,
                 )
@@ -282,3 +313,19 @@ def _normalize_score(label: VerdictLabel, score: int) -> int:
         return bounded
     # Preserve relative intent when possible, but keep the score inside the label band.
     return max(low, min(high, bounded if bounded != 0 else low))
+
+
+def _resolve_display_label_ja(label: VerdictLabel, display_label_ja: str) -> str:
+    """Return a safe Japanese display label while preserving internal English labels."""
+
+    normalized = display_label_ja.strip()
+    if normalized:
+        return normalized
+    defaults = {
+        VerdictLabel.TRUE: "正確",
+        VerdictLabel.MOSTLY_TRUE: "概ね正確",
+        VerdictLabel.UNCONFIRMED: "未確認",
+        VerdictLabel.MISLEADING: "誤解を招く",
+        VerdictLabel.FALSE: "誤り",
+    }
+    return defaults[label]

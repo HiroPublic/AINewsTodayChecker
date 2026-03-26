@@ -20,11 +20,19 @@ def test_build_report_messages_returns_three_messages() -> None:
         content_hash="hash",
     )
     verdicts = [
-        ClaimVerdict(claim=ParsedClaim(raw_text="raw", order_index=1), label=VerdictLabel.FALSE, score=10, reason="reason")
+        ClaimVerdict(
+            claim=ParsedClaim(raw_text="raw", order_index=1),
+            label=VerdictLabel.FALSE,
+            display_label_ja="誤り",
+            score=10,
+            reason="reason",
+        )
     ]
     messages = build_report_messages(episode, verdicts, overall_score=10)
     assert len(messages) == 3
     assert "#98" in messages[0]
+    assert "*誤り*: 1 / *誤解を招く*: 0 / *未確認*: 0" in messages[0]
+    assert "1. *誤り* (10) raw" in messages[1]
     assert should_notify(verdicts, overall_score=10, threshold=60) is True
 
 
@@ -40,7 +48,13 @@ def test_build_report_messages_does_not_repeat_episode_number_in_title() -> None
         content_hash="hash",
     )
     verdicts = [
-        ClaimVerdict(claim=ParsedClaim(raw_text="raw", order_index=1), label=VerdictLabel.FALSE, score=10, reason="reason")
+        ClaimVerdict(
+            claim=ParsedClaim(raw_text="raw", order_index=1),
+            label=VerdictLabel.FALSE,
+            display_label_ja="誤り",
+            score=10,
+            reason="reason",
+        )
     ]
 
     messages = build_report_messages(episode, verdicts, overall_score=10)

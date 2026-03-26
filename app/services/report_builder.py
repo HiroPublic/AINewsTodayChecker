@@ -27,12 +27,12 @@ def build_report_messages(
             f"AI News Verifier",
             episode_heading,
             f"総合スコア: {overall_score}",
-            f"FALSE: {counts[VerdictLabel.FALSE]} / MISLEADING: {counts[VerdictLabel.MISLEADING]} / UNCONFIRMED: {counts[VerdictLabel.UNCONFIRMED]}",
+            f"*誤り*: {counts[VerdictLabel.FALSE]} / *誤解を招く*: {counts[VerdictLabel.MISLEADING]} / *未確認*: {counts[VerdictLabel.UNCONFIRMED]}",
             f"危険度: {danger}",
         ]
     )
     details = [
-        f"{index}. {verdict.label} ({verdict.score}) {truncate_text(verdict.claim.raw_text, 120)}"
+        f"{index}. *{_display_label(verdict)}* ({verdict.score}) {truncate_text(verdict.claim.raw_text, 120)}"
         for index, verdict in enumerate(verdicts, start=1)
     ]
     message_2 = "項目別結果\n" + "\n".join(details)
@@ -77,3 +77,16 @@ def _build_display_title(episode: Episode) -> str:
     if not title_without_number:
         return f"#{episode.episode_number}"
     return f"#{episode.episode_number} {title_without_number}"
+
+
+def _display_label(verdict: ClaimVerdict) -> str:
+    if verdict.display_label_ja:
+        return verdict.display_label_ja
+    defaults = {
+        VerdictLabel.TRUE: "正確",
+        VerdictLabel.MOSTLY_TRUE: "概ね正確",
+        VerdictLabel.UNCONFIRMED: "未確認",
+        VerdictLabel.MISLEADING: "誤解を招く",
+        VerdictLabel.FALSE: "誤り",
+    }
+    return defaults[verdict.label]

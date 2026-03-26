@@ -1,0 +1,92 @@
+{
+  "ok": true,
+  "raw_response": "{\n  \"overall_score\": 25,\n  \"overall_verdict\": \"MISLEADING\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"記事は3月25日にGemini 2.5とLlama 4が登場と主張するが、検索結果ではGemini 2.5 Flash/Proは2025年6月リリース、Llama 4は2025年4月頃と既報。1億トークンやGPT-5匹敵などの誇張が多く、他のニュースも証拠なしで誤解を招く。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"Google、1億トークンのコンテキスト窓を持つ「Gemini 2.5」を公開（3月25日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 5,\n      \"claim_reason\": \"Gemini 2.5 Flash/Proは2025年6月17日リリースで1Mトークン（非1億）。3月25日公開の証拠なし。[1][6]\",\n      \"risk_flags\": [\"date_inconsistency\", \"exaggeration\"],\n      \"evidence\": [\n        {\n          \"title\": \"Gemini 2.5 Flash vs Llama 4 Maverick (Comparative Analysis)\",\n          \"url\": \"https://blog.galaxy.ai/compare/gemini-2-5-flash-vs-llama-4-maverick\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"Model versions and lifecycle | Generative AI on Vertex AI\",\n          \"url\": \"https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Meta、オープンソース最強の「Llama 4」をリリース、GPT-5に匹敵（3月25日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"Llama 4 (Scout/Maverick)は2025年4月頃リリースでオープンソースだが、GPT-4超えはあるがGPT-5（未発表）匹敵の証拠なし。最強主張誇張。[3][7][8]\",\n      \"risk_flags\": [\"exaggeration\", \"rumor_as_fact\"],\n      \"evidence\": [\n        {\n          \"title\": \"Meta releases Llama 4, a new crop of flagship AI models - TechCrunch\",\n          \"url\": \"https://techcrunch.com/2025/04/05/meta-releases-llama-4-a-new-crop-of-flagship-ai-models/\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"The Llama 4 herd: The beginning of a new era of natively ... - Meta AI\",\n          \"url\": \"https://ai.meta.com/blog/llama-4-multimodal-intelligence/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"JR東日本、AIによる線路点検の完全自動化を2026年内に開始（3月25日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果に該当ニュースの証拠なし。公式発表確認できず。\",\n      \"risk_flags\": [\"weak_sourcing\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"国連、150カ国が批准する「AI安全保障条約」を採択（3月25日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 0,\n      \"claim_reason\": \"検索結果に国連AI条約の証拠一切なし。非現実的で裏付けゼロ。\",\n      \"risk_flags\": [\"unrealistic_numbers\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"Amazon、Anthropicに150億ドルの追加出資、独自チップ開発を加速（3月25日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 55,\n      \"claim_reason\": \"検索結果に2026年3月25日の追加出資証拠なし。過去出資はあるが特定日付・額未確認。\",\n      \"risk_flags\": [\"weak_sourcing\", \"date_inconsistency\"],\n      \"evidence\": []\n    }\n  ]\n}",
+  "parsed_response": {
+    "overall_score": 25,
+    "overall_verdict": "MISLEADING",
+    "needs_attention": true,
+    "overall_summary": "記事は3月25日にGemini 2.5とLlama 4が登場と主張するが、検索結果ではGemini 2.5 Flash/Proは2025年6月リリース、Llama 4は2025年4月頃と既報。1億トークンやGPT-5匹敵などの誇張が多く、他のニュースも証拠なしで誤解を招く。",
+    "claims": [
+      {
+        "claim_text": "Google、1億トークンのコンテキスト窓を持つ「Gemini 2.5」を公開（3月25日）",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 5,
+        "claim_reason": "Gemini 2.5 Flash/Proは2025年6月17日リリースで1Mトークン（非1億）。3月25日公開の証拠なし。[1][6]",
+        "risk_flags": [
+          "date_inconsistency",
+          "exaggeration"
+        ],
+        "evidence": [
+          {
+            "title": "Gemini 2.5 Flash vs Llama 4 Maverick (Comparative Analysis)",
+            "url": "https://blog.galaxy.ai/compare/gemini-2-5-flash-vs-llama-4-maverick",
+            "source_type": "primary"
+          },
+          {
+            "title": "Model versions and lifecycle | Generative AI on Vertex AI",
+            "url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions",
+            "source_type": "primary"
+          }
+        ]
+      },
+      {
+        "claim_text": "Meta、オープンソース最強の「Llama 4」をリリース、GPT-5に匹敵（3月25日）",
+        "label": "MISLEADING",
+        "display_label_ja": "誤解を招く",
+        "score": 30,
+        "claim_reason": "Llama 4 (Scout/Maverick)は2025年4月頃リリースでオープンソースだが、GPT-4超えはあるがGPT-5（未発表）匹敵の証拠なし。最強主張誇張。[3][7][8]",
+        "risk_flags": [
+          "exaggeration",
+          "rumor_as_fact"
+        ],
+        "evidence": [
+          {
+            "title": "Meta releases Llama 4, a new crop of flagship AI models - TechCrunch",
+            "url": "https://techcrunch.com/2025/04/05/meta-releases-llama-4-a-new-crop-of-flagship-ai-models/",
+            "source_type": "primary"
+          },
+          {
+            "title": "The Llama 4 herd: The beginning of a new era of natively ... - Meta AI",
+            "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+            "source_type": "primary"
+          }
+        ]
+      },
+      {
+        "claim_text": "JR東日本、AIによる線路点検の完全自動化を2026年内に開始（3月25日）",
+        "label": "UNCONFIRMED",
+        "display_label_ja": "未確認",
+        "score": 50,
+        "claim_reason": "検索結果に該当ニュースの証拠なし。公式発表確認できず。",
+        "risk_flags": [
+          "weak_sourcing"
+        ],
+        "evidence": []
+      },
+      {
+        "claim_text": "国連、150カ国が批准する「AI安全保障条約」を採択（3月25日）",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 0,
+        "claim_reason": "検索結果に国連AI条約の証拠一切なし。非現実的で裏付けゼロ。",
+        "risk_flags": [
+          "unrealistic_numbers"
+        ],
+        "evidence": []
+      },
+      {
+        "claim_text": "Amazon、Anthropicに150億ドルの追加出資、独自チップ開発を加速（3月25日）",
+        "label": "UNCONFIRMED",
+        "display_label_ja": "未確認",
+        "score": 55,
+        "claim_reason": "検索結果に2026年3月25日の追加出資証拠なし。過去出資はあるが特定日付・額未確認。",
+        "risk_flags": [
+          "weak_sourcing",
+          "date_inconsistency"
+        ],
+        "evidence": []
+      }
+    ]
+  }
+}

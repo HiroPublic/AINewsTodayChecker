@@ -47,6 +47,7 @@ def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> No
                     {
                         "claim_text": "アップル、SiriにGPT-5を完全統合と発表（3月23日）",
                         "label": "MISLEADING",
+                        "display_label_ja": "誤解を招く",
                         "score": 41,
                         "claim_reason": "根拠に対して表現が強すぎます。",
                         "risk_flags": ["exaggeration"],
@@ -62,14 +63,22 @@ def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> No
 
     assert len(verdicts) == 1
     assert verdicts[0].label == VerdictLabel.MISLEADING
+    assert verdicts[0].display_label_ja == "誤解を招く"
     assert verdicts[0].score == 41
     prompt = json.loads((tmp_path / "prompt.json").read_text(encoding="utf-8"))
     response = json.loads((tmp_path / "perplexity-response.json").read_text(encoding="utf-8"))
     assert "system_prompt" in prompt
+    assert "Return each `claim_text` in the original Japanese from the target article." in prompt["system_prompt"]
     assert "user_prompt" in prompt
+    assert "display_label_ja" in prompt["user_prompt"]
+    assert "Episode published date:\n2026-03-24" in prompt["user_prompt"]
+    assert "Stale-news cutoff date for `既報`:\n2026-03-22" in prompt["user_prompt"]
+    assert prompt["episode_published_date"] == "2026-03-24"
+    assert prompt["stale_cutoff_date"] == "2026-03-22"
     assert response["ok"] is True
     assert "raw_response" in response
     assert response["parsed_response"]["claims"][0]["label"] == "MISLEADING"
+    assert response["parsed_response"]["claims"][0]["display_label_ja"] == "誤解を招く"
 
 
 def test_verify_episode_normalizes_zero_score_for_unconfirmed(tmp_path) -> None:
@@ -84,6 +93,7 @@ def test_verify_episode_normalizes_zero_score_for_unconfirmed(tmp_path) -> None:
                     {
                         "claim_text": "未確認の主張",
                         "label": "UNCONFIRMED",
+                        "display_label_ja": "既報",
                         "score": 0,
                         "claim_reason": "確認できませんでした。",
                         "risk_flags": [],
@@ -98,6 +108,7 @@ def test_verify_episode_normalizes_zero_score_for_unconfirmed(tmp_path) -> None:
     verdicts = service.verify_episode(build_episode())
 
     assert verdicts[0].label == VerdictLabel.UNCONFIRMED
+    assert verdicts[0].display_label_ja == "既報"
     assert verdicts[0].score == 45
 
 
