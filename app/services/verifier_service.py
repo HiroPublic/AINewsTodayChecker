@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass
-from datetime import timedelta
 from pathlib import Path
 
 from pydantic import BaseModel, Field, ValidationError
@@ -42,9 +41,9 @@ Rules:
   - UNCONFIRMED -> 未確認
   - MISLEADING -> 誤解を招く
   - FALSE -> 誤り
-- Judge stale-news status relative to the episode published date provided in the user prompt.
-- Only set `display_label_ja` to `既報` when the content itself is not wrong, but the news is old and the supporting article/event date is on or before the cutoff date defined as two calendar days before the episode published date.
-- Do not use `既報` for items dated the day before the episode published date.
+- Judge stale-news status relative to the parenthesized date written at the end of each news item, such as `（3月26日）`.
+- Only set `display_label_ja` to `既報` when the content itself is not wrong, but the supporting article/event date is earlier than that parenthesized date.
+- Do not use `既報` when the supporting article/event date is the same as the parenthesized date.
 - Do not change the score only because of this display label.
 - Use score ranges consistently by label:
   - TRUE: 85-100
@@ -92,12 +91,6 @@ Allowed labels:
 
 Article title:
 {title}
-
-Episode published date:
-{episode_published_date}
-
-Stale-news cutoff date for `既報`:
-{stale_cutoff_date}
 
 Article URL:
 {url}
@@ -155,12 +148,8 @@ class EpisodeVerifierService:
         return self._verify_rule_based(episode)
 
     def _verify_with_perplexity(self, episode: Episode) -> list[ClaimVerdict]:
-        episode_published_date = episode.published_at.date()
-        stale_cutoff_date = episode_published_date - timedelta(days=2)
         user_prompt = USER_PROMPT_TEMPLATE.format(
             title=episode.title,
-            episode_published_date=episode_published_date.isoformat(),
-            stale_cutoff_date=stale_cutoff_date.isoformat(),
             url=episode.episode_url,
             text=episode.summary_text,
         )
@@ -170,8 +159,6 @@ class EpisodeVerifierService:
                 "system_prompt": SYSTEM_PROMPT,
                 "user_prompt": user_prompt,
                 "episode_title": episode.title,
-                "episode_published_date": episode_published_date.isoformat(),
-                "stale_cutoff_date": stale_cutoff_date.isoformat(),
                 "episode_url": episode.episode_url,
             },
         )

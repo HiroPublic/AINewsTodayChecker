@@ -69,12 +69,9 @@ def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> No
     response = json.loads((tmp_path / "perplexity-response.json").read_text(encoding="utf-8"))
     assert "system_prompt" in prompt
     assert "Return each `claim_text` in the original Japanese from the target article." in prompt["system_prompt"]
+    assert "Judge stale-news status relative to the parenthesized date written at the end of each news item" in prompt["system_prompt"]
     assert "user_prompt" in prompt
     assert "display_label_ja" in prompt["user_prompt"]
-    assert "Episode published date:\n2026-03-24" in prompt["user_prompt"]
-    assert "Stale-news cutoff date for `既報`:\n2026-03-22" in prompt["user_prompt"]
-    assert prompt["episode_published_date"] == "2026-03-24"
-    assert prompt["stale_cutoff_date"] == "2026-03-22"
     assert response["ok"] is True
     assert "raw_response" in response
     assert response["parsed_response"]["claims"][0]["label"] == "MISLEADING"
