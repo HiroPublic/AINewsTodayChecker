@@ -1,78 +1,74 @@
 {
   "ok": true,
-  "raw_response": "```json\n{\n  \"overall_score\": 82,\n  \"overall_verdict\": \"MOSTLY_TRUE\",\n  \"needs_attention\": false,\n  \"overall_summary\": \"記事の主要な主張は検証可能な事実に基づいている。ソニー・ホンダのAFEELA開発中止は3月25日に正式発表され、ホンダの電動化戦略見直し（3月12日）が直接の原因である。ただし「ライセンス転換」の具体的内容は検証不可。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"ソニー・ホンダ、EV「AFEELA」市販化中止とライセンス転換（3月26日）\",\n      \"label\": \"MOSTLY_TRUE\",\n      \"display_label_ja\": \"概ね正確\",\n      \"score\": 78,\n      \"claim_reason\": \"AFEELA開発中止は3月25日に発表され、3月26日の報道は正確。ただし「ライセンス転換」の具体的内容は検証不可で、公式発表では今後の事業方向性は「協議継続中」とのみ記載。\",\n      \"risk_flags\": [\n        \"unconfirmed_detail\",\n        \"date_precision\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"第1弾モデル「AFEELA 1」および第2弾モデルの開発と発売の中止について\",\n          \"url\": \"https://www.shm-afeela.com/ja/news/2026-03-25/\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"ソニー・ホンダモビリティ、「AFEELA」開発中止\",\n          \"url\": \"https://k-tai.watch.impress.co.jp/docs/news/2096256.html\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"スタンフォード大、AIがユーザーにおもねる「サイコファンシー」を指摘（3月26日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"提供された検索結果に該当情報なし。スタンフォード大の研究発表の日付、内容、用語の正確性が検証不可。\",\n      \"risk_flags\": [\n        \"no_evidence\",\n        \"terminology_unclear\"\n      ],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"MicrosoftとNVIDIA、AIによる次世代原子炉開発で提携（3月25日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"提供された検索結果に該当情報なし。提携発表の日付、内容、詳細が検証不可。\",\n      \"risk_flags\": [\n        \"no_evidence\"\n      ],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"米超党派議員、AI基盤モデルの透明性義務化法案を提出（3月26日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 48,\n      \"claim_reason\": \"提供された検索結果に該当情報なし。法案提出の日付、内容、提出議員が検証不可。\",\n      \"risk_flags\": [\n        \"no_evidence\"\n      ],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"Google、言葉から3D世界を生成する「Project Genie」公開（3月26日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 52,\n      \"claim_reason\": \"提供された検索結果に該当情報なし。Project Genieの公開日、機能、詳細が検証不可。\",\n      \"risk_flags\": [\n        \"no_evidence\"\n      ],\n      \"evidence\": []\n    }\n  ]\n}\n```",
+  "raw_response": "{\n  \"overall_score\": 45,\n  \"overall_verdict\": \"UNCONFIRMED\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"記事は3月27-28日のAIニュースをまとめているが、Reflection AIの調達・評価額以外は検索結果で裏付けられず未確認。Reflection AIは25Bドル評価の交渉報道あり（46倍は過去8Bから約3倍で誇張）。他ニュース（日本政府戦略、OpenAI出資等）は証拠なし。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"Reflection AIが3700億円調達、評価額は1年で46倍へ（3月27日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"3700億円(約25Bドル)調達は交渉報道のみで確定せず[1][2][6]。評価額25Bドル(pre-money)は2025年10月の8Bドルから約3倍、46倍は誇張か誤算[4][5]。\",\n      \"risk_flags\": [\"exaggeration\", \"rumor-as-fact\"],\n      \"evidence\": [\n        {\n          \"title\": \"Nvidia-Backed Reflection AI Seeks $2.5B at $25B Valuation\",\n          \"url\": \"https://www.trustfinance.com/blog/nvidia-backed-reflection-ai-seeks-2-5b-at-25b-valuation-wsj-report\",\n          \"source_type\": \"secondary\"\n        },\n        {\n          \"title\": \"AI Startup Reflection Seeks $25B Valuation in Massive Funding Round\",\n          \"url\": \"https://www.finedayradio.com/news/tv-delmarva-channel-33/ai-startup-reflection-seeks-25b-valuation-in-massive-funding-round/\",\n          \"source_type\": \"secondary\"\n        },\n        {\n          \"title\": \"Reflection AI raises $2B to be America's open frontier AI lab\",\n          \"url\": \"https://techcrunch.com/2025/10/09/reflection-raises-2b-to-be-americas-open-frontier-ai-lab-challenging-deepseek/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"日本政府「AIロボティクス戦略」策定、世界シェア30%目標（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果に日本政府のAIロボ戦略策定や30%シェア目標の裏付けなし。公式ソース欠如。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"OpenAIが「AI軍団」を開発するIsaraに出資（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"OpenAIのIsara出資や「AI軍団」開発の報道なし。検索結果に該当情報なし。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"Shield AIが3000億円調達、自律飛行AIの軍事導入拡大（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"Shield AIの3000億円調達や軍事導入拡大の証拠なし。検索結果該当せず。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"SINEXCELとAI.net、日本の再生エネ転換へAI蓄電で提携（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"SINEXCELとAI.netの提携報道なし。検索結果に情報なし。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    }\n  ]\n}",
   "parsed_response": {
-    "overall_score": 82,
-    "overall_verdict": "MOSTLY_TRUE",
-    "needs_attention": false,
-    "overall_summary": "記事の主要な主張は検証可能な事実に基づいている。ソニー・ホンダのAFEELA開発中止は3月25日に正式発表され、ホンダの電動化戦略見直し（3月12日）が直接の原因である。ただし「ライセンス転換」の具体的内容は検証不可。",
+    "overall_score": 45,
+    "overall_verdict": "UNCONFIRMED",
+    "needs_attention": true,
+    "overall_summary": "記事は3月27-28日のAIニュースをまとめているが、Reflection AIの調達・評価額以外は検索結果で裏付けられず未確認。Reflection AIは25Bドル評価の交渉報道あり（46倍は過去8Bから約3倍で誇張）。他ニュース（日本政府戦略、OpenAI出資等）は証拠なし。",
     "claims": [
       {
-        "claim_text": "ソニー・ホンダ、EV「AFEELA」市販化中止とライセンス転換（3月26日）",
-        "label": "MOSTLY_TRUE",
-        "display_label_ja": "概ね正確",
-        "score": 78,
-        "claim_reason": "AFEELA開発中止は3月25日に発表され、3月26日の報道は正確。ただし「ライセンス転換」の具体的内容は検証不可で、公式発表では今後の事業方向性は「協議継続中」とのみ記載。",
+        "claim_text": "Reflection AIが3700億円調達、評価額は1年で46倍へ（3月27日）",
+        "label": "MISLEADING",
+        "display_label_ja": "誤解を招く",
+        "score": 30,
+        "claim_reason": "3700億円(約25Bドル)調達は交渉報道のみで確定せず[1][2][6]。評価額25Bドル(pre-money)は2025年10月の8Bドルから約3倍、46倍は誇張か誤算[4][5]。",
         "risk_flags": [
-          "unconfirmed_detail",
-          "date_precision"
+          "exaggeration",
+          "rumor-as-fact"
         ],
         "evidence": [
           {
-            "title": "第1弾モデル「AFEELA 1」および第2弾モデルの開発と発売の中止について",
-            "url": "https://www.shm-afeela.com/ja/news/2026-03-25/",
-            "source_type": "primary"
+            "title": "Nvidia-Backed Reflection AI Seeks $2.5B at $25B Valuation",
+            "url": "https://www.trustfinance.com/blog/nvidia-backed-reflection-ai-seeks-2-5b-at-25b-valuation-wsj-report",
+            "source_type": "secondary"
           },
           {
-            "title": "ソニー・ホンダモビリティ、「AFEELA」開発中止",
-            "url": "https://k-tai.watch.impress.co.jp/docs/news/2096256.html",
+            "title": "AI Startup Reflection Seeks $25B Valuation in Massive Funding Round",
+            "url": "https://www.finedayradio.com/news/tv-delmarva-channel-33/ai-startup-reflection-seeks-25b-valuation-in-massive-funding-round/",
             "source_type": "secondary"
+          },
+          {
+            "title": "Reflection AI raises $2B to be America's open frontier AI lab",
+            "url": "https://techcrunch.com/2025/10/09/reflection-raises-2b-to-be-americas-open-frontier-ai-lab-challenging-deepseek/",
+            "source_type": "primary"
           }
         ]
       },
       {
-        "claim_text": "スタンフォード大、AIがユーザーにおもねる「サイコファンシー」を指摘（3月26日）",
+        "claim_text": "日本政府「AIロボティクス戦略」策定、世界シェア30%目標（3月27日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
         "score": 50,
-        "claim_reason": "提供された検索結果に該当情報なし。スタンフォード大の研究発表の日付、内容、用語の正確性が検証不可。",
-        "risk_flags": [
-          "no_evidence",
-          "terminology_unclear"
-        ],
+        "claim_reason": "検索結果に日本政府のAIロボ戦略策定や30%シェア目標の裏付けなし。公式ソース欠如。",
+        "risk_flags": [],
         "evidence": []
       },
       {
-        "claim_text": "MicrosoftとNVIDIA、AIによる次世代原子炉開発で提携（3月25日）",
+        "claim_text": "OpenAIが「AI軍団」を開発するIsaraに出資（3月27日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 45,
-        "claim_reason": "提供された検索結果に該当情報なし。提携発表の日付、内容、詳細が検証不可。",
-        "risk_flags": [
-          "no_evidence"
-        ],
+        "score": 50,
+        "claim_reason": "OpenAIのIsara出資や「AI軍団」開発の報道なし。検索結果に該当情報なし。",
+        "risk_flags": [],
         "evidence": []
       },
       {
-        "claim_text": "米超党派議員、AI基盤モデルの透明性義務化法案を提出（3月26日）",
+        "claim_text": "Shield AIが3000億円調達、自律飛行AIの軍事導入拡大（3月27日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 48,
-        "claim_reason": "提供された検索結果に該当情報なし。法案提出の日付、内容、提出議員が検証不可。",
-        "risk_flags": [
-          "no_evidence"
-        ],
+        "score": 50,
+        "claim_reason": "Shield AIの3000億円調達や軍事導入拡大の証拠なし。検索結果該当せず。",
+        "risk_flags": [],
         "evidence": []
       },
       {
-        "claim_text": "Google、言葉から3D世界を生成する「Project Genie」公開（3月26日）",
+        "claim_text": "SINEXCELとAI.net、日本の再生エネ転換へAI蓄電で提携（3月27日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 52,
-        "claim_reason": "提供された検索結果に該当情報なし。Project Genieの公開日、機能、詳細が検証不可。",
-        "risk_flags": [
-          "no_evidence"
-        ],
+        "score": 50,
+        "claim_reason": "SINEXCELとAI.netの提携報道なし。検索結果に情報なし。",
+        "risk_flags": [],
         "evidence": []
       }
     ]
