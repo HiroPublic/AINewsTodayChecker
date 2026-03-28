@@ -1,6 +1,18 @@
+## 📝 このプロジェクトについて
+
+このリポジトリは、「AIニュースのハルシネーションをAIで検証する」というコンセプトで作ったアプリです。
+
+https://note.com/dr830821/n/n7ea6651f0599
+
+重要：
+このアプリの結果は100%正しいわけではありません。
+AIをAIで検証するという構造上、完全な正解にはなりません。
+
+「ファクトチェックのための補助ツール」として使うことを前提にしています。
+
 # AI News Today Verifier
 
-GitHub Actions を正式な起動トリガーにした、Python 3.12 ベースの AI ニュース検証 MVP です。ポッドキャスト「最新AI情報 AIニューストゥデイ」の RSS feed から最新回を取得し、概要欄を Perplexity API で評価し、結果を Slack Incoming Webhook に通知します。
+GitHub Actions を正式な起動トリガーにした、Python 3.12 ベースの AI ニュース検証アプリです。ポッドキャスト「最新AI情報 AIニューストゥデイ」の RSS feed から最新回を取得し、概要欄を Perplexity API で評価し、結果を Slack Incoming Webhook に通知します。
 
 ## 特徴
 
