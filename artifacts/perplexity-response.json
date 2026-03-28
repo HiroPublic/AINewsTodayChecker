@@ -1,74 +1,82 @@
 {
   "ok": true,
-  "raw_response": "{\n  \"overall_score\": 45,\n  \"overall_verdict\": \"UNCONFIRMED\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"記事は3月27-28日のAIニュースをまとめているが、Reflection AIの調達・評価額以外は検索結果で裏付けられず未確認。Reflection AIは25Bドル評価の交渉報道あり（46倍は過去8Bから約3倍で誇張）。他ニュース（日本政府戦略、OpenAI出資等）は証拠なし。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"Reflection AIが3700億円調達、評価額は1年で46倍へ（3月27日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"3700億円(約25Bドル)調達は交渉報道のみで確定せず[1][2][6]。評価額25Bドル(pre-money)は2025年10月の8Bドルから約3倍、46倍は誇張か誤算[4][5]。\",\n      \"risk_flags\": [\"exaggeration\", \"rumor-as-fact\"],\n      \"evidence\": [\n        {\n          \"title\": \"Nvidia-Backed Reflection AI Seeks $2.5B at $25B Valuation\",\n          \"url\": \"https://www.trustfinance.com/blog/nvidia-backed-reflection-ai-seeks-2-5b-at-25b-valuation-wsj-report\",\n          \"source_type\": \"secondary\"\n        },\n        {\n          \"title\": \"AI Startup Reflection Seeks $25B Valuation in Massive Funding Round\",\n          \"url\": \"https://www.finedayradio.com/news/tv-delmarva-channel-33/ai-startup-reflection-seeks-25b-valuation-in-massive-funding-round/\",\n          \"source_type\": \"secondary\"\n        },\n        {\n          \"title\": \"Reflection AI raises $2B to be America's open frontier AI lab\",\n          \"url\": \"https://techcrunch.com/2025/10/09/reflection-raises-2b-to-be-americas-open-frontier-ai-lab-challenging-deepseek/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"日本政府「AIロボティクス戦略」策定、世界シェア30%目標（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果に日本政府のAIロボ戦略策定や30%シェア目標の裏付けなし。公式ソース欠如。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"OpenAIが「AI軍団」を開発するIsaraに出資（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"OpenAIのIsara出資や「AI軍団」開発の報道なし。検索結果に該当情報なし。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"Shield AIが3000億円調達、自律飛行AIの軍事導入拡大（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"Shield AIの3000億円調達や軍事導入拡大の証拠なし。検索結果該当せず。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"SINEXCELとAI.net、日本の再生エネ転換へAI蓄電で提携（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"SINEXCELとAI.netの提携報道なし。検索結果に情報なし。\",\n      \"risk_flags\": [],\n      \"evidence\": []\n    }\n  ]\n}",
+  "raw_response": "{\n  \"overall_score\": 25,\n  \"overall_verdict\": \"MISLEADING\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"記事は3月28日のニュースとして5つの主張を挙げるが、いずれも検索結果で裏付けられず、ソフトバンクの既存AI基盤を「伊邪那岐」と誤称した可能性が高い。Claude 4.5や他項目も未確認で、未来推測を現在ニュースとして提示し誤解を招く。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"ソフトバンク、国内最大級のAI計算基盤「伊邪那岐」を稼働（3月28日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"ソフトバンクは2023年9月から国内最大級AI基盤を稼働、2024年10月に拡張（NVIDIA GPU 4000基）したが、「伊邪那岐」は開発中プロジェクト名で2026年量産予定。3月28日稼働の証拠なし。[3][4][5]\",\n      \"risk_flags\": [\"exaggeration\", \"rumor-as-fact\"],\n      \"evidence\": [\n        {\n          \"title\": \"ソフトバンク株式会社 第44回定時株主総会 書き起こし\",\n          \"url\": \"https://group.softbank/system/files/pdf/ir/investors/shareholders/2024/shareholders-meeting_44_08_ja.pdf\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"国内最大級のAI計算基盤において約4,000基の「NVIDIA Hopper GPU ...\",\n          \"url\": \"https://www.softbank.jp/corp/news/press/sbkk/2024/20241031_03/\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"【大解説】ABBを買収したことでソフトバンクのフィジカルAI戦略は ...\",\n          \"url\": \"https://blogs.itmedia.co.jp/serial/2025/12/abbai.html\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Anthropic、自律推論を強化したClaude 4.5を緊急公開（3月28日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果にClaude 4.5の公開情報一切なし。Anthropicの最新モデル言及なく、3月28日緊急公開の証拠欠如。噂レベルの可能性。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"インテル、光演算を用いたAI専用チップ「Lumina」を量産開始（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"検索結果にIntelの「Lumina」チップの言及なし。光演算AIチップ量産開始の公式証拠欠如。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"YouTube、AIによる「文化適応型」自動吹き替え機能を導入（3月28日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果にYouTubeの文化適応型自動吹き替え機能導入の情報なし。3月28日の証拠欠如。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"EU、AI法に基づき「個人識別・プロファイリング」を全面禁止（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"EU AI法は高リスクAIを規制するが、個人識別・プロファイリングを全面禁止せず、リスクベース規制。3月28日全面禁止の証拠なし。\",\n      \"risk_flags\": [\"exaggeration\"],\n      \"evidence\": []\n    }\n  ]\n}",
   "parsed_response": {
-    "overall_score": 45,
-    "overall_verdict": "UNCONFIRMED",
+    "overall_score": 25,
+    "overall_verdict": "MISLEADING",
     "needs_attention": true,
-    "overall_summary": "記事は3月27-28日のAIニュースをまとめているが、Reflection AIの調達・評価額以外は検索結果で裏付けられず未確認。Reflection AIは25Bドル評価の交渉報道あり（46倍は過去8Bから約3倍で誇張）。他ニュース（日本政府戦略、OpenAI出資等）は証拠なし。",
+    "overall_summary": "記事は3月28日のニュースとして5つの主張を挙げるが、いずれも検索結果で裏付けられず、ソフトバンクの既存AI基盤を「伊邪那岐」と誤称した可能性が高い。Claude 4.5や他項目も未確認で、未来推測を現在ニュースとして提示し誤解を招く。",
     "claims": [
       {
-        "claim_text": "Reflection AIが3700億円調達、評価額は1年で46倍へ（3月27日）",
+        "claim_text": "ソフトバンク、国内最大級のAI計算基盤「伊邪那岐」を稼働（3月28日）",
         "label": "MISLEADING",
         "display_label_ja": "誤解を招く",
         "score": 30,
-        "claim_reason": "3700億円(約25Bドル)調達は交渉報道のみで確定せず[1][2][6]。評価額25Bドル(pre-money)は2025年10月の8Bドルから約3倍、46倍は誇張か誤算[4][5]。",
+        "claim_reason": "ソフトバンクは2023年9月から国内最大級AI基盤を稼働、2024年10月に拡張（NVIDIA GPU 4000基）したが、「伊邪那岐」は開発中プロジェクト名で2026年量産予定。3月28日稼働の証拠なし。[3][4][5]",
         "risk_flags": [
           "exaggeration",
           "rumor-as-fact"
         ],
         "evidence": [
           {
-            "title": "Nvidia-Backed Reflection AI Seeks $2.5B at $25B Valuation",
-            "url": "https://www.trustfinance.com/blog/nvidia-backed-reflection-ai-seeks-2-5b-at-25b-valuation-wsj-report",
-            "source_type": "secondary"
-          },
-          {
-            "title": "AI Startup Reflection Seeks $25B Valuation in Massive Funding Round",
-            "url": "https://www.finedayradio.com/news/tv-delmarva-channel-33/ai-startup-reflection-seeks-25b-valuation-in-massive-funding-round/",
-            "source_type": "secondary"
-          },
-          {
-            "title": "Reflection AI raises $2B to be America's open frontier AI lab",
-            "url": "https://techcrunch.com/2025/10/09/reflection-raises-2b-to-be-americas-open-frontier-ai-lab-challenging-deepseek/",
+            "title": "ソフトバンク株式会社 第44回定時株主総会 書き起こし",
+            "url": "https://group.softbank/system/files/pdf/ir/investors/shareholders/2024/shareholders-meeting_44_08_ja.pdf",
             "source_type": "primary"
+          },
+          {
+            "title": "国内最大級のAI計算基盤において約4,000基の「NVIDIA Hopper GPU ...",
+            "url": "https://www.softbank.jp/corp/news/press/sbkk/2024/20241031_03/",
+            "source_type": "primary"
+          },
+          {
+            "title": "【大解説】ABBを買収したことでソフトバンクのフィジカルAI戦略は ...",
+            "url": "https://blogs.itmedia.co.jp/serial/2025/12/abbai.html",
+            "source_type": "secondary"
           }
         ]
       },
       {
-        "claim_text": "日本政府「AIロボティクス戦略」策定、世界シェア30%目標（3月27日）",
+        "claim_text": "Anthropic、自律推論を強化したClaude 4.5を緊急公開（3月28日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
         "score": 50,
-        "claim_reason": "検索結果に日本政府のAIロボ戦略策定や30%シェア目標の裏付けなし。公式ソース欠如。",
-        "risk_flags": [],
+        "claim_reason": "検索結果にClaude 4.5の公開情報一切なし。Anthropicの最新モデル言及なく、3月28日緊急公開の証拠欠如。噂レベルの可能性。",
+        "risk_flags": [
+          "rumor-as-fact"
+        ],
         "evidence": []
       },
       {
-        "claim_text": "OpenAIが「AI軍団」を開発するIsaraに出資（3月27日）",
+        "claim_text": "インテル、光演算を用いたAI専用チップ「Lumina」を量産開始（3月27日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "OpenAIのIsara出資や「AI軍団」開発の報道なし。検索結果に該当情報なし。",
-        "risk_flags": [],
+        "score": 45,
+        "claim_reason": "検索結果にIntelの「Lumina」チップの言及なし。光演算AIチップ量産開始の公式証拠欠如。",
+        "risk_flags": [
+          "rumor-as-fact"
+        ],
         "evidence": []
       },
       {
-        "claim_text": "Shield AIが3000億円調達、自律飛行AIの軍事導入拡大（3月27日）",
+        "claim_text": "YouTube、AIによる「文化適応型」自動吹き替え機能を導入（3月28日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
         "score": 50,
-        "claim_reason": "Shield AIの3000億円調達や軍事導入拡大の証拠なし。検索結果該当せず。",
-        "risk_flags": [],
+        "claim_reason": "検索結果にYouTubeの文化適応型自動吹き替え機能導入の情報なし。3月28日の証拠欠如。",
+        "risk_flags": [
+          "rumor-as-fact"
+        ],
         "evidence": []
       },
       {
-        "claim_text": "SINEXCELとAI.net、日本の再生エネ転換へAI蓄電で提携（3月27日）",
-        "label": "UNCONFIRMED",
-        "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "SINEXCELとAI.netの提携報道なし。検索結果に情報なし。",
-        "risk_flags": [],
+        "claim_text": "EU、AI法に基づき「個人識別・プロファイリング」を全面禁止（3月28日）",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 10,
+        "claim_reason": "EU AI法は高リスクAIを規制するが、個人識別・プロファイリングを全面禁止せず、リスクベース規制。3月28日全面禁止の証拠なし。",
+        "risk_flags": [
+          "exaggeration"
+        ],
         "evidence": []
       }
     ]
