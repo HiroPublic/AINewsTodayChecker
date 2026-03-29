@@ -6,9 +6,11 @@ import json
 import logging
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Protocol
 
 from pydantic import BaseModel, Field, ValidationError
 
+from app.clients.gemini_client import GeminiClient
 from app.clients.perplexity_client import PerplexityClient
 from app.schemas.claim import Claim
 from app.schemas.episode import Episode
@@ -130,24 +132,37 @@ class ArticleEvaluation(BaseModel):
     claims: list[EvaluatedClaim]
 
 
+class EvaluationClient(Protocol):
+    """Protocol for LLM-backed article evaluation clients."""
+
+    def is_configured(self) -> bool:
+        """Return whether the client can be used."""
+
+    def evaluate_article(self, system_prompt: str, user_prompt: str) -> str:
+        """Evaluate an article and return JSON text."""
+
+
 @dataclass(slots=True)
 class EpisodeVerifierService:
     """Verify episodes using Perplexity with rule-based fallback."""
 
+    provider: str = "perplexity"
     perplexity_client: PerplexityClient | None = None
+    gemini_client: GeminiClient | None = None
     artifacts_dir: Path = Path("artifacts")
 
     def verify_episode(self, episode: Episode) -> list[ClaimVerdict]:
         """Verify an episode and return claim-level verdicts."""
 
-        if self.perplexity_client and self.perplexity_client.is_configured():
+        client = self._get_evaluation_client()
+        if client and client.is_configured():
             try:
-                return self._verify_with_perplexity(episode)
+                return self._verify_with_model(episode, client)
             except Exception:
-                LOGGER.exception("Perplexity verification failed; falling back to rule-based verification")
+                LOGGER.exception("%s verification failed; falling back to rule-based verification", self.provider)
         return self._verify_rule_based(episode)
 
-    def _verify_with_perplexity(self, episode: Episode) -> list[ClaimVerdict]:
+    def _verify_with_model(self, episode: Episode, client: EvaluationClient) -> list[ClaimVerdict]:
         user_prompt = USER_PROMPT_TEMPLATE.format(
             title=episode.title,
             url=episode.episode_url,
@@ -163,13 +178,13 @@ class EpisodeVerifierService:
             },
         )
         try:
-            payload = self.perplexity_client.evaluate_article(
+            payload = client.evaluate_article(
                 system_prompt=SYSTEM_PROMPT,
                 user_prompt=user_prompt,
             )
         except Exception as exc:
             self._write_json_artifact(
-                "perplexity-response.json",
+                self._response_artifact_filename(),
                 {
                     "ok": False,
                     "error": str(exc),
@@ -178,7 +193,7 @@ class EpisodeVerifierService:
             )
             raise
         self._write_json_artifact(
-            "perplexity-response.json",
+            self._response_artifact_filename(),
             _build_response_artifact(payload),
         )
         evaluation = _parse_article_evaluation(payload)
@@ -200,6 +215,25 @@ class EpisodeVerifierService:
         if verdicts:
             return verdicts
         raise RuntimeError("Perplexity returned no claims to evaluate")
+
+    def _get_evaluation_client(self) -> EvaluationClient | None:
+        """Return the selected evaluation client when supported."""
+
+        provider = self.provider.strip().lower()
+        if provider == "gemini":
+            return self.gemini_client
+        if provider == "perplexity":
+            return self.perplexity_client
+        LOGGER.warning("Unknown verifier provider=%s; using perplexity", self.provider)
+        return self.perplexity_client
+
+    def _response_artifact_filename(self) -> str:
+        """Return the provider-specific response artifact filename."""
+
+        provider = self.provider.strip().lower()
+        if provider == "gemini":
+            return "gemini-response.json"
+        return "perplexity-response.json"
 
     def _verify_rule_based(self, episode: Episode) -> list[ClaimVerdict]:
         claims = [parse_claim(claim) for claim in extract_claims(episode.summary_text)]

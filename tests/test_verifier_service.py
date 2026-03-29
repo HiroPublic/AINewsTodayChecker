@@ -22,6 +22,10 @@ class FakePerplexityClient:
         return self._payload
 
 
+class FakeGeminiClient(FakePerplexityClient):
+    """Reuse the same deterministic stub for Gemini-backed tests."""
+
+
 def build_episode() -> Episode:
     return Episode(
         source="rss",
@@ -37,6 +41,7 @@ def build_episode() -> Episode:
 
 def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> None:
     service = EpisodeVerifierService(
+        provider="perplexity",
         perplexity_client=FakePerplexityClient(
             """{
                 "overall_score": 41,
@@ -80,6 +85,7 @@ def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> No
 
 def test_verify_episode_normalizes_zero_score_for_unconfirmed(tmp_path) -> None:
     service = EpisodeVerifierService(
+        provider="perplexity",
         perplexity_client=FakePerplexityClient(
             """{
                 "overall_score": 1,
@@ -111,6 +117,7 @@ def test_verify_episode_normalizes_zero_score_for_unconfirmed(tmp_path) -> None:
 
 def test_verify_episode_falls_back_to_rule_based_when_client_not_configured() -> None:
     service = EpisodeVerifierService(
+        provider="perplexity",
         perplexity_client=FakePerplexityClient(payload="{}", configured=False)
     )
 
@@ -118,3 +125,37 @@ def test_verify_episode_falls_back_to_rule_based_when_client_not_configured() ->
 
     assert len(verdicts) == 1
     assert verdicts[0].label == VerdictLabel.MISLEADING
+
+
+def test_verify_episode_uses_gemini_when_provider_is_gemini(tmp_path) -> None:
+    service = EpisodeVerifierService(
+        provider="gemini",
+        gemini_client=FakeGeminiClient(
+            """{
+                "overall_score": 88,
+                "overall_verdict": "TRUE",
+                "needs_attention": false,
+                "overall_summary": "summary",
+                "claims": [
+                    {
+                        "claim_text": "アップル、SiriにGPT-5を完全統合と発表（3月23日）",
+                        "label": "TRUE",
+                        "display_label_ja": "正確",
+                        "score": 88,
+                        "claim_reason": "十分な根拠があると判断しました。",
+                        "risk_flags": [],
+                        "evidence": []
+                    }
+                ]
+            }"""
+        ),
+        artifacts_dir=tmp_path,
+    )
+
+    verdicts = service.verify_episode(build_episode())
+
+    assert len(verdicts) == 1
+    assert verdicts[0].label == VerdictLabel.TRUE
+    response = json.loads((tmp_path / "gemini-response.json").read_text(encoding="utf-8"))
+    assert response["ok"] is True
+    assert response["parsed_response"]["claims"][0]["label"] == "TRUE"

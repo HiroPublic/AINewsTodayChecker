@@ -1,6 +1,7 @@
 """Dependency builders for API routes."""
 
 from app.clients.podcast_client import PodcastClient
+from app.clients.gemini_client import GeminiClient
 from app.clients.perplexity_client import PerplexityClient
 from app.clients.slack_client import SlackClient
 from app.core.config import get_settings
@@ -28,10 +29,15 @@ def get_job_service() -> JobService:
         ),
         normalize_service=NormalizeService(),
         episode_verifier=EpisodeVerifierService(
+            provider=settings.verifier_provider,
             perplexity_client=PerplexityClient(
                 api_key=settings.perplexity_api_key,
                 model=settings.perplexity_model,
-            )
+            ),
+            gemini_client=GeminiClient(
+                api_key=settings.gemini_api_key,
+                model=settings.gemini_model,
+            ),
         ),
         state_store=StateStore(settings.state_file_path),
         slack_notifier=notifier,

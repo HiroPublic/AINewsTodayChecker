@@ -11,6 +11,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from app.clients.podcast_client import PodcastClient
+from app.clients.gemini_client import GeminiClient
 from app.clients.perplexity_client import PerplexityClient
 from app.clients.slack_client import SlackClient
 from app.core.config import get_settings
@@ -26,10 +27,11 @@ from app.services.verifier_service import EpisodeVerifierService
 LOGGER = logging.getLogger(__name__)
 
 
-def build_job_service() -> JobService:
+def build_job_service(provider: str | None = None) -> JobService:
     """Build the daily job service from settings."""
 
     settings = get_settings()
+    resolved_provider = provider or settings.verifier_provider
     notifier = None
     if settings.slack_webhook_url:
         notifier = SlackNotifier(client=SlackClient(webhook_url=settings.slack_webhook_url))
@@ -42,10 +44,15 @@ def build_job_service() -> JobService:
         ),
         normalize_service=NormalizeService(),
         episode_verifier=EpisodeVerifierService(
+            provider=resolved_provider,
             perplexity_client=PerplexityClient(
                 api_key=settings.perplexity_api_key,
                 model=settings.perplexity_model,
-            )
+            ),
+            gemini_client=GeminiClient(
+                api_key=settings.gemini_api_key,
+                model=settings.gemini_model,
+            ),
         ),
         state_store=StateStore(settings.state_file_path),
         slack_notifier=notifier,
@@ -68,6 +75,12 @@ def main() -> int:
         default=None,
         help="Target a specific episode number when used with preview mode.",
     )
+    parser.add_argument(
+        "--provider",
+        choices=("perplexity", "gemini"),
+        default=None,
+        help="Override the verifier provider for this run. Defaults to VERIFIER_PROVIDER or perplexity.",
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -77,7 +90,10 @@ def main() -> int:
         LOGGER.error("--episode-number can only be used together with --preview")
         return 1
     try:
-        result = build_job_service().run_daily(preview_only=args.preview, episode_number=args.episode_number)
+        result = build_job_service(provider=args.provider).run_daily(
+            preview_only=args.preview,
+            episode_number=args.episode_number,
+        )
     except Exception:
         LOGGER.exception("Daily job failed")
         return 1
