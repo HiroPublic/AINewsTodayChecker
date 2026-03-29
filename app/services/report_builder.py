@@ -15,6 +15,7 @@ def build_report_messages(
     episode: Episode,
     verdicts: list[ClaimVerdict],
     overall_score: int,
+    verifier_model_name: str = "",
 ) -> list[str]:
     """Build up to three Slack messages from verification results."""
 
@@ -24,7 +25,7 @@ def build_report_messages(
     episode_heading = f"エピソード: {display_title}"
     message_1 = "\n".join(
         [
-            f"AI News Verifier",
+            _build_header(verifier_model_name),
             episode_heading,
             f"総合スコア: {overall_score}",
             f"*誤り*: {counts[VerdictLabel.FALSE]} / *誤解を招く*: {counts[VerdictLabel.MISLEADING]} / *未確認*: {counts[VerdictLabel.UNCONFIRMED]}",
@@ -53,6 +54,12 @@ def should_notify(verdicts: list[ClaimVerdict], overall_score: int, threshold: i
         or counts[VerdictLabel.FALSE] >= 1
         or (counts[VerdictLabel.MISLEADING] + counts[VerdictLabel.UNCONFIRMED]) >= 2
     )
+
+
+def _build_header(verifier_model_name: str) -> str:
+    if verifier_model_name.strip():
+        return f"AI News Verifier ({verifier_model_name.strip()})"
+    return "AI News Verifier"
 
 
 def _build_danger_level(counts_score: int, counts: Counter) -> str:

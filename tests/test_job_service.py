@@ -76,6 +76,7 @@ def test_job_service_saves_state_after_notification(tmp_path: Path) -> None:
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=notifier,
         notify_score_threshold=60,
+        verifier_model_name="gemini-2.5-flash",
     )
 
     result = service.run_daily()
@@ -83,6 +84,7 @@ def test_job_service_saves_state_after_notification(tmp_path: Path) -> None:
     assert result.status == "notified"
     assert result.notified is True
     assert len(notifier.messages) == 3
+    assert notifier.messages[0].startswith("AI News Verifier (gemini-2.5-flash)")
     assert StateStore(tmp_path / "last_run.json").load().last_episode_hash is not None
 
 
@@ -98,6 +100,7 @@ def test_job_service_skips_duplicate_hash(tmp_path: Path) -> None:
         state_store=state_store,
         slack_notifier=notifier,
         notify_score_threshold=60,
+        verifier_model_name="gemini-2.5-flash",
     )
 
     result = service.run_daily()
@@ -116,6 +119,7 @@ def test_job_service_preview_does_not_send_or_save_state(tmp_path: Path) -> None
         state_store=StateStore(state_path),
         slack_notifier=notifier,
         notify_score_threshold=60,
+        verifier_model_name="gemini-2.5-flash",
     )
 
     result = service.run_daily(preview_only=True)
@@ -136,6 +140,7 @@ def test_job_service_preview_can_target_episode_number(tmp_path: Path) -> None:
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=FakeSlackNotifier(),
         notify_score_threshold=60,
+        verifier_model_name="gemini-2.5-flash",
     )
 
     result = service.run_daily(preview_only=True, episode_number=98)
@@ -154,6 +159,7 @@ def test_job_service_preview_rejects_missing_episode_number(tmp_path: Path) -> N
         state_store=StateStore(tmp_path / "last_run.json"),
         slack_notifier=FakeSlackNotifier(),
         notify_score_threshold=60,
+        verifier_model_name="gemini-2.5-flash",
     )
 
     with pytest.raises(ValueError, match="episode_number 123 was not found in fetched data"):

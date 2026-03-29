@@ -28,8 +28,9 @@ def test_build_report_messages_returns_three_messages() -> None:
             reason="reason",
         )
     ]
-    messages = build_report_messages(episode, verdicts, overall_score=10)
+    messages = build_report_messages(episode, verdicts, overall_score=10, verifier_model_name="gemini-2.5-flash")
     assert len(messages) == 3
+    assert messages[0].startswith("AI News Verifier (gemini-2.5-flash)")
     assert "#98" in messages[0]
     assert "*誤り*: 1 / *誤解を招く*: 0 / *未確認*: 0" in messages[0]
     assert "1. *誤り* (10) raw" in messages[1]

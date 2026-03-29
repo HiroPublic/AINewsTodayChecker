@@ -57,7 +57,20 @@ def build_job_service(provider: str | None = None) -> JobService:
         state_store=StateStore(settings.state_file_path),
         slack_notifier=notifier,
         notify_score_threshold=settings.notify_score_threshold,
+        verifier_model_name=_resolve_verifier_model_name(
+            provider=resolved_provider,
+            gemini_model=settings.gemini_model,
+            perplexity_model=settings.perplexity_model,
+        ),
     )
+
+
+def _resolve_verifier_model_name(provider: str, gemini_model: str, perplexity_model: str) -> str:
+    """Return the active model name for user-facing reporting."""
+
+    if provider.strip().lower() == "perplexity":
+        return perplexity_model
+    return gemini_model
 
 
 def main() -> int:

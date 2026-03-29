@@ -39,6 +39,7 @@ class JobService:
         state_store: StateStore,
         slack_notifier: SlackNotifier | None,
         notify_score_threshold: int,
+        verifier_model_name: str = "",
     ) -> None:
         self._fetch_service = fetch_service
         self._normalize_service = normalize_service
@@ -46,6 +47,7 @@ class JobService:
         self._state_store = state_store
         self._slack_notifier = slack_notifier
         self._notify_score_threshold = notify_score_threshold
+        self._verifier_model_name = verifier_model_name
 
     def run_daily(self, preview_only: bool = False, episode_number: int | None = None) -> DailyRunResult:
         """Execute the full daily verification job."""
@@ -59,7 +61,12 @@ class JobService:
 
         verdicts = self._episode_verifier.verify_episode(episode)
         overall_score = calculate_overall_score(verdicts)
-        messages = build_report_messages(episode, verdicts, overall_score)
+        messages = build_report_messages(
+            episode,
+            verdicts,
+            overall_score,
+            verifier_model_name=self._verifier_model_name,
+        )
         if preview_only:
             LOGGER.info("Preview mode enabled; skipping Slack send and state update")
             return DailyRunResult(

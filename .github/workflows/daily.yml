@@ -4,25 +4,6 @@ on:
   schedule:
     - cron: "20 21 * * *"
   workflow_dispatch:
-    inputs:
-      provider:
-        description: "Verifier provider to use for this manual run"
-        required: false
-        default: "gemini"
-        type: choice
-        options:
-          - gemini
-          - perplexity
-      preview:
-        description: "Run in preview mode without Slack send or state update"
-        required: false
-        default: true
-        type: boolean
-      episode_number:
-        description: "Optional episode number for preview mode"
-        required: false
-        default: ""
-        type: string
 
 permissions:
   contents: write
@@ -63,19 +44,7 @@ jobs:
           PERPLEXITY_MODEL: ${{ vars.PERPLEXITY_MODEL }}
         run: |
           mkdir -p .state
-          CMD=(python scripts/run_daily.py)
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            CMD+=(--provider "${{ inputs.provider }}")
-            if [ "${{ inputs.preview }}" = "true" ]; then
-              CMD+=(--preview)
-              if [ -n "${{ inputs.episode_number }}" ]; then
-                CMD+=(--episode-number "${{ inputs.episode_number }}")
-              fi
-            fi
-          fi
-          printf 'Running command: %q ' "${CMD[@]}"
-          printf '\n'
-          "${CMD[@]}"
+          python scripts/run_daily.py
 
       - name: Upload verification artifacts
         if: always()
@@ -86,7 +55,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit updated artifacts
-        if: always() && github.event_name != 'workflow_dispatch'
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
