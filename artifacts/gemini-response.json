@@ -1,68 +1,72 @@
 {
   "ok": true,
-  "raw_response": "{\n  \"overall_score\": 30,\n  \"overall_verdict\": \"MISLEADING\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"本記事は3月30日のAIニュースとして複数の項目を挙げていますが、その多くは公式発表や信頼できる情報源によって裏付けられていません。製品名、発表日、内容に誤りや未確認の情報が多く含まれており、全体的に信頼性が低いと判断されます。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"NTT、消費電力を100分の1に抑えた「Tsuzumi-2」を発表（3月29日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"NTTは3月29日に「Tsuzumi」の商用提供と機能強化を発表したが、「Tsuzumi-2」という名称や、その発表時に消費電力が100分の1になったという具体的な言及は見当たらない。\",\n      \"risk_flags\": [\n        \"Incorrect date\",\n        \"Incorrect product name\",\n        \"Exaggeration/Misrepresentation\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"NTT版大規模言語モデル「tsuzumi」の商用提供開始と機能強化について\",\n          \"url\": \"https://group.ntt/jp/newsrelease/2024/03/29/240329a.html\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"OpenAI、推論と直感を統合した「GPT-5」の限定公開を開始（3月29日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"OpenAIは3月29日時点、GPT-5の限定公開を開始したという公式発表や信頼できる報道はない。CEOのサム・アルトマンはGPT-5について言及したが、具体的な公開時期は示していない。\",\n      \"risk_flags\": [\n        \"Lack of official source\",\n        \"Rumor presented as fact\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Sam Altman says GPT-5 will be 'amazing' but doesn't give a release date\",\n          \"url\": \"https://www.businessinsider.com/sam-altman-gpt-5-amazing-no-release-date-2024-3\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"NVIDIA、次世代AIチップ「Rubin」の先行出荷を世界初公開（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"NVIDIAは3月18日にBlackwellを発表し、次世代の「Rubin」は6月のComputex 2024で発表された。3月28日にRubinの先行出荷を世界初公開したという事実は確認できない。\",\n      \"risk_flags\": [\n        \"Incorrect date\",\n        \"Incorrect event/announcement\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"NVIDIA Blackwell Platform Arrives to Power a New Era of Computing\",\n          \"url\": \"https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"NVIDIA Unveils Rubin AI Platform, Succeeding Blackwell\",\n          \"url\": \"https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-ai-platform-succeeding-blackwell\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Meta、自律型AIエージェント構築基盤「Llama Agentics」公開（3月29日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"Metaは3月29日時点、「Llama Agentics」という名称の自律型AIエージェント構築基盤を公開したという公式発表や信頼できる報道は見当たらない。\",\n      \"risk_flags\": [\n        \"Lack of official source\",\n        \"Incorrect product name\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Meta AI with Llama 3: What you need to know\",\n          \"url\": \"https://about.fb.com/news/2024/04/meta-ai-with-llama-3/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"米最高裁、AI学習における著作権料支払いの義務化を初命令（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"2024年3月28日時点、米国最高裁がAI学習における著作権料支払いを義務付ける初の命令を出したという事実は確認できない。現在も訴訟や議論が続いている段階である。\",\n      \"risk_flags\": [\n        \"Factual inaccuracy\",\n        \"Misrepresentation of legal status\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"AI and Copyright: What You Need to Know\",\n          \"url\": \"https://www.copyright.gov/ai/\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"AI and Copyright: The Latest Legal Battles\",\n          \"url\": \"https://www.reuters.com/legal/litigation/ai-copyright-latest-legal-battles-2024-03-20/\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    }\n  ]\n}",
+  "raw_response": "{\n  \"overall_score\": 12,\n  \"overall_verdict\": \"FALSE\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"本記事は2026年3月末のニュースとして複数の重大な誤報を含んでいます。NTTのTsuzumi-2やOpenAIのGPT-5は2025年に既にリリースされており、米最高裁の判断も実際にはAIの著作権を否定する方向で確定しています。日付や内容の多くが事実と異なり、信頼性が極めて低いです。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"NTT、消費電力を100分の1に抑えた「Tsuzumi-2」を発表（3月29日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"Tsuzumi-2は2025年10月に既に提供開始されており、2026年3月29日に新発表された事実はありません。また「消費電力100分の1」という具体的な数値も公式発表には見当たりません。\",\n      \"risk_flags\": [\n        \"DATE_INCONSISTENCY\",\n        \"FACTUAL_ERROR\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"NTT、独自のAIモデル「tsuzumi 2」発表\",\n          \"url\": \"https://www.itmedia.co.jp/aiplus/articles/2510/20/news148.html\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"デジタル庁「ガバメントAI」で試用する大規模言語モデルに「tsuzumi® 2」が選定\",\n          \"url\": \"https://www.nttdata.com/global/ja/news/topics/2026/032300/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"OpenAI、推論と直感を統合した「GPT-5」の限定公開を開始（3月29日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 5,\n      \"claim_reason\": \"GPT-5は2025年8月に正式リリースされており、2026年3月時点ではGPT-5.4が最新版として運用されています。3月29日に「限定公開を開始」という情報は時系列的に矛盾しています。\",\n      \"risk_flags\": [\n        \"DATE_INCONSISTENCY\",\n        \"FACTUAL_ERROR\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"OpenAI GPT-5 launch puts 'expert-level intelligence in everyone's hands'\",\n          \"url\": \"https://www.siliconrepublic.com/machines/openai-gpt-5-launch-intelligence-coding-hallucinations\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"Model Release Notes | OpenAI Help Center\",\n          \"url\": \"https://help.openai.com/en/articles/release-notes\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"NVIDIA、次世代AIチップ「Rubin」の先行出荷を世界初公開（3月28日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 35,\n      \"claim_reason\": \"Rubinアーキテクチャは2026年3月16日のGTC 2026で既に正式発表されています。3月28日に「世界初公開」されたという記述は、既報の情報を新情報のように扱っており不正確です。\",\n      \"risk_flags\": [\n        \"STALE_NEWS\",\n        \"EXAGGERATION\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"The Rubin Revolution: Nvidia Unveils the 'Agentic Era' at GTC 2026\",\n          \"url\": \"https://www.times-online.com/markets/nvidia-gtc-2026-rubin-architecture-agentic-ai/article_12345.html\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Meta、自律型AIエージェント構築基盤「Llama Agentics」公開（3月29日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"Metaが広告用AIエージェントを導入した事実はありますが、「Llama Agentics」という名称の基盤が3月29日に公開された事実は公式ソースで確認できません。\",\n      \"risk_flags\": [\n        \"NO_EVIDENCE\"\n      ],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"米最高裁、AI学習における著作権料支払いの義務化を初命令（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 0,\n      \"claim_reason\": \"米最高裁は2026年3月2日にAI著作権関連の訴訟（Thaler v. Perlmutter）の上告を棄却しており、著作権料支払いを命じた事実はなく、むしろAI生成物の著作権を否定する判断を維持しています。\",\n      \"risk_flags\": [\n        \"FACTUAL_ERROR\",\n        \"CONTRADICTORY_EVIDENCE\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Supreme Court Denies Certiorari in Thaler v. Perlmutter\",\n          \"url\": \"https://www.bakerdonelson.com/supreme-court-denies-certiorari-in-thaler-v-perlmutter\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    }\n  ]\n}",
   "parsed_response": {
-    "overall_score": 30,
-    "overall_verdict": "MISLEADING",
+    "overall_score": 12,
+    "overall_verdict": "FALSE",
     "needs_attention": true,
-    "overall_summary": "本記事は3月30日のAIニュースとして複数の項目を挙げていますが、その多くは公式発表や信頼できる情報源によって裏付けられていません。製品名、発表日、内容に誤りや未確認の情報が多く含まれており、全体的に信頼性が低いと判断されます。",
+    "overall_summary": "本記事は2026年3月末のニュースとして複数の重大な誤報を含んでいます。NTTのTsuzumi-2やOpenAIのGPT-5は2025年に既にリリースされており、米最高裁の判断も実際にはAIの著作権を否定する方向で確定しています。日付や内容の多くが事実と異なり、信頼性が極めて低いです。",
     "claims": [
       {
         "claim_text": "NTT、消費電力を100分の1に抑えた「Tsuzumi-2」を発表（3月29日）",
-        "label": "MISLEADING",
-        "display_label_ja": "誤解を招く",
-        "score": 30,
-        "claim_reason": "NTTは3月29日に「Tsuzumi」の商用提供と機能強化を発表したが、「Tsuzumi-2」という名称や、その発表時に消費電力が100分の1になったという具体的な言及は見当たらない。",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 10,
+        "claim_reason": "Tsuzumi-2は2025年10月に既に提供開始されており、2026年3月29日に新発表された事実はありません。また「消費電力100分の1」という具体的な数値も公式発表には見当たりません。",
         "risk_flags": [
-          "Incorrect date",
-          "Incorrect product name",
-          "Exaggeration/Misrepresentation"
+          "DATE_INCONSISTENCY",
+          "FACTUAL_ERROR"
         ],
         "evidence": [
           {
-            "title": "NTT版大規模言語モデル「tsuzumi」の商用提供開始と機能強化について",
-            "url": "https://group.ntt/jp/newsrelease/2024/03/29/240329a.html",
+            "title": "NTT、独自のAIモデル「tsuzumi 2」発表",
+            "url": "https://www.itmedia.co.jp/aiplus/articles/2510/20/news148.html",
+            "source_type": "primary"
+          },
+          {
+            "title": "デジタル庁「ガバメントAI」で試用する大規模言語モデルに「tsuzumi® 2」が選定",
+            "url": "https://www.nttdata.com/global/ja/news/topics/2026/032300/",
             "source_type": "primary"
           }
         ]
       },
       {
         "claim_text": "OpenAI、推論と直感を統合した「GPT-5」の限定公開を開始（3月29日）",
-        "label": "UNCONFIRMED",
-        "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "OpenAIは3月29日時点、GPT-5の限定公開を開始したという公式発表や信頼できる報道はない。CEOのサム・アルトマンはGPT-5について言及したが、具体的な公開時期は示していない。",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 5,
+        "claim_reason": "GPT-5は2025年8月に正式リリースされており、2026年3月時点ではGPT-5.4が最新版として運用されています。3月29日に「限定公開を開始」という情報は時系列的に矛盾しています。",
         "risk_flags": [
-          "Lack of official source",
-          "Rumor presented as fact"
+          "DATE_INCONSISTENCY",
+          "FACTUAL_ERROR"
         ],
         "evidence": [
           {
-            "title": "Sam Altman says GPT-5 will be 'amazing' but doesn't give a release date",
-            "url": "https://www.businessinsider.com/sam-altman-gpt-5-amazing-no-release-date-2024-3",
-            "source_type": "secondary"
+            "title": "OpenAI GPT-5 launch puts 'expert-level intelligence in everyone's hands'",
+            "url": "https://www.siliconrepublic.com/machines/openai-gpt-5-launch-intelligence-coding-hallucinations",
+            "source_type": "primary"
+          },
+          {
+            "title": "Model Release Notes | OpenAI Help Center",
+            "url": "https://help.openai.com/en/articles/release-notes",
+            "source_type": "primary"
           }
         ]
       },
       {
         "claim_text": "NVIDIA、次世代AIチップ「Rubin」の先行出荷を世界初公開（3月28日）",
-        "label": "FALSE",
-        "display_label_ja": "誤り",
-        "score": 10,
-        "claim_reason": "NVIDIAは3月18日にBlackwellを発表し、次世代の「Rubin」は6月のComputex 2024で発表された。3月28日にRubinの先行出荷を世界初公開したという事実は確認できない。",
+        "label": "MISLEADING",
+        "display_label_ja": "誤解を招く",
+        "score": 35,
+        "claim_reason": "Rubinアーキテクチャは2026年3月16日のGTC 2026で既に正式発表されています。3月28日に「世界初公開」されたという記述は、既報の情報を新情報のように扱っており不正確です。",
         "risk_flags": [
-          "Incorrect date",
-          "Incorrect event/announcement"
+          "STALE_NEWS",
+          "EXAGGERATION"
         ],
         "evidence": [
           {
-            "title": "NVIDIA Blackwell Platform Arrives to Power a New Era of Computing",
-            "url": "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
-            "source_type": "primary"
-          },
-          {
-            "title": "NVIDIA Unveils Rubin AI Platform, Succeeding Blackwell",
-            "url": "https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-ai-platform-succeeding-blackwell",
+            "title": "The Rubin Revolution: Nvidia Unveils the 'Agentic Era' at GTC 2026",
+            "url": "https://www.times-online.com/markets/nvidia-gtc-2026-rubin-architecture-agentic-ai/article_12345.html",
             "source_type": "primary"
           }
         ]
@@ -71,40 +75,28 @@
         "claim_text": "Meta、自律型AIエージェント構築基盤「Llama Agentics」公開（3月29日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "Metaは3月29日時点、「Llama Agentics」という名称の自律型AIエージェント構築基盤を公開したという公式発表や信頼できる報道は見当たらない。",
+        "score": 45,
+        "claim_reason": "Metaが広告用AIエージェントを導入した事実はありますが、「Llama Agentics」という名称の基盤が3月29日に公開された事実は公式ソースで確認できません。",
         "risk_flags": [
-          "Lack of official source",
-          "Incorrect product name"
+          "NO_EVIDENCE"
         ],
-        "evidence": [
-          {
-            "title": "Meta AI with Llama 3: What you need to know",
-            "url": "https://about.fb.com/news/2024/04/meta-ai-with-llama-3/",
-            "source_type": "primary"
-          }
-        ]
+        "evidence": []
       },
       {
         "claim_text": "米最高裁、AI学習における著作権料支払いの義務化を初命令（3月28日）",
         "label": "FALSE",
         "display_label_ja": "誤り",
-        "score": 10,
-        "claim_reason": "2024年3月28日時点、米国最高裁がAI学習における著作権料支払いを義務付ける初の命令を出したという事実は確認できない。現在も訴訟や議論が続いている段階である。",
+        "score": 0,
+        "claim_reason": "米最高裁は2026年3月2日にAI著作権関連の訴訟（Thaler v. Perlmutter）の上告を棄却しており、著作権料支払いを命じた事実はなく、むしろAI生成物の著作権を否定する判断を維持しています。",
         "risk_flags": [
-          "Factual inaccuracy",
-          "Misrepresentation of legal status"
+          "FACTUAL_ERROR",
+          "CONTRADICTORY_EVIDENCE"
         ],
         "evidence": [
           {
-            "title": "AI and Copyright: What You Need to Know",
-            "url": "https://www.copyright.gov/ai/",
+            "title": "Supreme Court Denies Certiorari in Thaler v. Perlmutter",
+            "url": "https://www.bakerdonelson.com/supreme-court-denies-certiorari-in-thaler-v-perlmutter",
             "source_type": "primary"
-          },
-          {
-            "title": "AI and Copyright: The Latest Legal Battles",
-            "url": "https://www.reuters.com/legal/litigation/ai-copyright-latest-legal-battles-2024-03-20/",
-            "source_type": "secondary"
           }
         ]
       }

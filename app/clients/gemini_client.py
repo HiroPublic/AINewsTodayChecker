@@ -14,7 +14,7 @@ GEMINI_GENERATE_CONTENT_URL = "https://generativelanguage.googleapis.com/v1beta/
 class GeminiClient:
     """Minimal client for Gemini generateContent calls."""
 
-    def __init__(self, api_key: str, model: str = "gemini-2.5-flash", timeout: float = 30.0) -> None:
+    def __init__(self, api_key: str, model: str = "gemini-2.5-flash", timeout: float = 90.0) -> None:
         self._api_key = api_key
         self._model = model
         self._timeout = timeout
@@ -43,6 +43,11 @@ class GeminiClient:
                             "text": user_prompt,
                         }
                     ],
+                }
+            ],
+            "tools": [
+                {
+                    "google_search": {},
                 }
             ],
             "generationConfig": {
