@@ -21,11 +21,12 @@ jobs:
           python-version: "3.12"
 
       - uses: actions/cache/restore@v4
+        id: state-cache-restore
         with:
           path: .state
-          key: ai-news-state-${{ github.ref_name }}
+          key: ai-news-state-${{ github.ref_name }}-
           restore-keys: |
-            ai-news-state-
+            ai-news-state-${{ github.ref_name }}-
 
       - name: Install dependencies
         run: |
@@ -72,4 +73,4 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: .state
-          key: ai-news-state-${{ github.ref_name }}
+          key: ai-news-state-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
