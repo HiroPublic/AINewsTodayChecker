@@ -1,4 +1,5 @@
 project_name = "AI News Today Verifier"
 
-[instructions]
-summary = "Build and maintain a GitHub Actions driven Python MVP for AI podcast verification and LINE notifications."
+instructions = """
+Build and maintain a GitHub Actions driven Python MVP for AI podcast verification and LINE notifications.
+"""

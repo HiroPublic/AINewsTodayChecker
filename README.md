@@ -206,3 +206,13 @@ python scripts/run_daily.py
 - claim ごとの外部根拠収集 client を追加
 - Slack 向け通知整形の改善
 - claim parser の日付・主体抽出精度向上
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+Copyright (c) 2026 HiroPublic
+
+This project was developed with assistance from generative AI.
