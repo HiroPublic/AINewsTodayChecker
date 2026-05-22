@@ -1,102 +1,61 @@
 {
   "ok": true,
-  "raw_response": "{\n  \"overall_score\": 12,\n  \"overall_verdict\": \"FALSE\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"本記事は2026年3月末のニュースとして複数の重大な誤報を含んでいます。NTTのTsuzumi-2やOpenAIのGPT-5は2025年に既にリリースされており、米最高裁の判断も実際にはAIの著作権を否定する方向で確定しています。日付や内容の多くが事実と異なり、信頼性が極めて低いです。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"NTT、消費電力を100分の1に抑えた「Tsuzumi-2」を発表（3月29日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"Tsuzumi-2は2025年10月に既に提供開始されており、2026年3月29日に新発表された事実はありません。また「消費電力100分の1」という具体的な数値も公式発表には見当たりません。\",\n      \"risk_flags\": [\n        \"DATE_INCONSISTENCY\",\n        \"FACTUAL_ERROR\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"NTT、独自のAIモデル「tsuzumi 2」発表\",\n          \"url\": \"https://www.itmedia.co.jp/aiplus/articles/2510/20/news148.html\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"デジタル庁「ガバメントAI」で試用する大規模言語モデルに「tsuzumi® 2」が選定\",\n          \"url\": \"https://www.nttdata.com/global/ja/news/topics/2026/032300/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"OpenAI、推論と直感を統合した「GPT-5」の限定公開を開始（3月29日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 5,\n      \"claim_reason\": \"GPT-5は2025年8月に正式リリースされており、2026年3月時点ではGPT-5.4が最新版として運用されています。3月29日に「限定公開を開始」という情報は時系列的に矛盾しています。\",\n      \"risk_flags\": [\n        \"DATE_INCONSISTENCY\",\n        \"FACTUAL_ERROR\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"OpenAI GPT-5 launch puts 'expert-level intelligence in everyone's hands'\",\n          \"url\": \"https://www.siliconrepublic.com/machines/openai-gpt-5-launch-intelligence-coding-hallucinations\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"Model Release Notes | OpenAI Help Center\",\n          \"url\": \"https://help.openai.com/en/articles/release-notes\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"NVIDIA、次世代AIチップ「Rubin」の先行出荷を世界初公開（3月28日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 35,\n      \"claim_reason\": \"Rubinアーキテクチャは2026年3月16日のGTC 2026で既に正式発表されています。3月28日に「世界初公開」されたという記述は、既報の情報を新情報のように扱っており不正確です。\",\n      \"risk_flags\": [\n        \"STALE_NEWS\",\n        \"EXAGGERATION\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"The Rubin Revolution: Nvidia Unveils the 'Agentic Era' at GTC 2026\",\n          \"url\": \"https://www.times-online.com/markets/nvidia-gtc-2026-rubin-architecture-agentic-ai/article_12345.html\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Meta、自律型AIエージェント構築基盤「Llama Agentics」公開（3月29日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"Metaが広告用AIエージェントを導入した事実はありますが、「Llama Agentics」という名称の基盤が3月29日に公開された事実は公式ソースで確認できません。\",\n      \"risk_flags\": [\n        \"NO_EVIDENCE\"\n      ],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"米最高裁、AI学習における著作権料支払いの義務化を初命令（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 0,\n      \"claim_reason\": \"米最高裁は2026年3月2日にAI著作権関連の訴訟（Thaler v. Perlmutter）の上告を棄却しており、著作権料支払いを命じた事実はなく、むしろAI生成物の著作権を否定する判断を維持しています。\",\n      \"risk_flags\": [\n        \"FACTUAL_ERROR\",\n        \"CONTRADICTORY_EVIDENCE\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Supreme Court Denies Certiorari in Thaler v. Perlmutter\",\n          \"url\": \"https://www.bakerdonelson.com/supreme-court-denies-certiorari-in-thaler-v-perlmutter\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    }\n  ]\n}",
+  "raw_response": "{\n  \"overall_score\": 38,\n  \"overall_verdict\": \"MISLEADING\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"本記事は2026年5月23日付ですが、内容は2024年5月22日前後の古いニュースや噂を再利用したものです。ソフトバンクのデータセンター計画やAppleのSiriに関する予測は2年前の報道と一致しており、現在の最新ニュースとして扱うのは極めて不適切で誤解を招きます。特にAppleの件は既に実現済みの過去の出来事です。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"ソフトバンク、AIデータセンターを日本全国に展開へ（5月22日）\",\n      \"label\": \"MOSTLY_TRUE\",\n      \"display_label_ja\": \"既報\",\n      \"score\": 80,\n      \"claim_reason\": \"2024年5月22日に発表されたシャープ堺工場跡地でのデータセンター構築合意など、2年前の情報を「今日のニュース」として扱っています。内容は事実に基づきますが、2026年の新情報ではありません。\",\n      \"risk_flags\": [\n        \"STALE_NEWS\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"ソフトバンクとシャープ、AIデータセンターの構築に向けた基本合意書を締結\",\n          \"url\": \"https://www.softbank.jp/corp/news/press/sbkk/2024/20240522_01/\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Anthropic、Claudeの企業向け新APIをリリース（5月22日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"2026年5月22日および2024年の同時期において、該当する「企業向け新API」の発表は確認できません。2024年5月には欧州でのAPI提供開始がありましたが、記事の記述とは内容が異なります。\",\n      \"risk_flags\": [\n        \"WEAK_SOURCING\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Anthropic Newsroom\",\n          \"url\": \"https://www.anthropic.com/news\",\n          \"source_type\": \"primary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Apple、生成AI搭載の次世代Siriを6月に発表か（5月22日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 15,\n      \"claim_reason\": \"2024年6月のWWDCに向けた2年前の予測記事をそのまま掲載しています。2026年時点ではApple Intelligenceは既にリリースされており、今から「発表か」と報じるのは事実関係として誤りです。\",\n      \"risk_flags\": [\n        \"STALE_NEWS\",\n        \"FACTUAL_ERROR\"\n      ],\n      \"evidence\": [\n        {\n          \"title\": \"Appleが恐れる生成AIの繁栄、「Siri」改良で対抗へ - JBpress\",\n          \"url\": \"https://jbpress.ismedia.jp/articles/-/81114\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    }\n  ]\n}",
   "parsed_response": {
-    "overall_score": 12,
-    "overall_verdict": "FALSE",
+    "overall_score": 38,
+    "overall_verdict": "MISLEADING",
     "needs_attention": true,
-    "overall_summary": "本記事は2026年3月末のニュースとして複数の重大な誤報を含んでいます。NTTのTsuzumi-2やOpenAIのGPT-5は2025年に既にリリースされており、米最高裁の判断も実際にはAIの著作権を否定する方向で確定しています。日付や内容の多くが事実と異なり、信頼性が極めて低いです。",
+    "overall_summary": "本記事は2026年5月23日付ですが、内容は2024年5月22日前後の古いニュースや噂を再利用したものです。ソフトバンクのデータセンター計画やAppleのSiriに関する予測は2年前の報道と一致しており、現在の最新ニュースとして扱うのは極めて不適切で誤解を招きます。特にAppleの件は既に実現済みの過去の出来事です。",
     "claims": [
       {
-        "claim_text": "NTT、消費電力を100分の1に抑えた「Tsuzumi-2」を発表（3月29日）",
-        "label": "FALSE",
-        "display_label_ja": "誤り",
-        "score": 10,
-        "claim_reason": "Tsuzumi-2は2025年10月に既に提供開始されており、2026年3月29日に新発表された事実はありません。また「消費電力100分の1」という具体的な数値も公式発表には見当たりません。",
+        "claim_text": "ソフトバンク、AIデータセンターを日本全国に展開へ（5月22日）",
+        "label": "MOSTLY_TRUE",
+        "display_label_ja": "既報",
+        "score": 80,
+        "claim_reason": "2024年5月22日に発表されたシャープ堺工場跡地でのデータセンター構築合意など、2年前の情報を「今日のニュース」として扱っています。内容は事実に基づきますが、2026年の新情報ではありません。",
         "risk_flags": [
-          "DATE_INCONSISTENCY",
-          "FACTUAL_ERROR"
+          "STALE_NEWS"
         ],
         "evidence": [
           {
-            "title": "NTT、独自のAIモデル「tsuzumi 2」発表",
-            "url": "https://www.itmedia.co.jp/aiplus/articles/2510/20/news148.html",
-            "source_type": "primary"
-          },
-          {
-            "title": "デジタル庁「ガバメントAI」で試用する大規模言語モデルに「tsuzumi® 2」が選定",
-            "url": "https://www.nttdata.com/global/ja/news/topics/2026/032300/",
+            "title": "ソフトバンクとシャープ、AIデータセンターの構築に向けた基本合意書を締結",
+            "url": "https://www.softbank.jp/corp/news/press/sbkk/2024/20240522_01/",
             "source_type": "primary"
           }
         ]
       },
       {
-        "claim_text": "OpenAI、推論と直感を統合した「GPT-5」の限定公開を開始（3月29日）",
-        "label": "FALSE",
-        "display_label_ja": "誤り",
-        "score": 5,
-        "claim_reason": "GPT-5は2025年8月に正式リリースされており、2026年3月時点ではGPT-5.4が最新版として運用されています。3月29日に「限定公開を開始」という情報は時系列的に矛盾しています。",
-        "risk_flags": [
-          "DATE_INCONSISTENCY",
-          "FACTUAL_ERROR"
-        ],
-        "evidence": [
-          {
-            "title": "OpenAI GPT-5 launch puts 'expert-level intelligence in everyone's hands'",
-            "url": "https://www.siliconrepublic.com/machines/openai-gpt-5-launch-intelligence-coding-hallucinations",
-            "source_type": "primary"
-          },
-          {
-            "title": "Model Release Notes | OpenAI Help Center",
-            "url": "https://help.openai.com/en/articles/release-notes",
-            "source_type": "primary"
-          }
-        ]
-      },
-      {
-        "claim_text": "NVIDIA、次世代AIチップ「Rubin」の先行出荷を世界初公開（3月28日）",
-        "label": "MISLEADING",
-        "display_label_ja": "誤解を招く",
-        "score": 35,
-        "claim_reason": "Rubinアーキテクチャは2026年3月16日のGTC 2026で既に正式発表されています。3月28日に「世界初公開」されたという記述は、既報の情報を新情報のように扱っており不正確です。",
-        "risk_flags": [
-          "STALE_NEWS",
-          "EXAGGERATION"
-        ],
-        "evidence": [
-          {
-            "title": "The Rubin Revolution: Nvidia Unveils the 'Agentic Era' at GTC 2026",
-            "url": "https://www.times-online.com/markets/nvidia-gtc-2026-rubin-architecture-agentic-ai/article_12345.html",
-            "source_type": "primary"
-          }
-        ]
-      },
-      {
-        "claim_text": "Meta、自律型AIエージェント構築基盤「Llama Agentics」公開（3月29日）",
+        "claim_text": "Anthropic、Claudeの企業向け新APIをリリース（5月22日）",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
         "score": 45,
-        "claim_reason": "Metaが広告用AIエージェントを導入した事実はありますが、「Llama Agentics」という名称の基盤が3月29日に公開された事実は公式ソースで確認できません。",
+        "claim_reason": "2026年5月22日および2024年の同時期において、該当する「企業向け新API」の発表は確認できません。2024年5月には欧州でのAPI提供開始がありましたが、記事の記述とは内容が異なります。",
         "risk_flags": [
-          "NO_EVIDENCE"
-        ],
-        "evidence": []
-      },
-      {
-        "claim_text": "米最高裁、AI学習における著作権料支払いの義務化を初命令（3月28日）",
-        "label": "FALSE",
-        "display_label_ja": "誤り",
-        "score": 0,
-        "claim_reason": "米最高裁は2026年3月2日にAI著作権関連の訴訟（Thaler v. Perlmutter）の上告を棄却しており、著作権料支払いを命じた事実はなく、むしろAI生成物の著作権を否定する判断を維持しています。",
-        "risk_flags": [
-          "FACTUAL_ERROR",
-          "CONTRADICTORY_EVIDENCE"
+          "WEAK_SOURCING"
         ],
         "evidence": [
           {
-            "title": "Supreme Court Denies Certiorari in Thaler v. Perlmutter",
-            "url": "https://www.bakerdonelson.com/supreme-court-denies-certiorari-in-thaler-v-perlmutter",
+            "title": "Anthropic Newsroom",
+            "url": "https://www.anthropic.com/news",
             "source_type": "primary"
+          }
+        ]
+      },
+      {
+        "claim_text": "Apple、生成AI搭載の次世代Siriを6月に発表か（5月22日）",
+        "label": "FALSE",
+        "display_label_ja": "誤り",
+        "score": 15,
+        "claim_reason": "2024年6月のWWDCに向けた2年前の予測記事をそのまま掲載しています。2026年時点ではApple Intelligenceは既にリリースされており、今から「発表か」と報じるのは事実関係として誤りです。",
+        "risk_flags": [
+          "STALE_NEWS",
+          "FACTUAL_ERROR"
+        ],
+        "evidence": [
+          {
+            "title": "Appleが恐れる生成AIの繁栄、「Siri」改良で対抗へ - JBpress",
+            "url": "https://jbpress.ismedia.jp/articles/-/81114",
+            "source_type": "secondary"
           }
         ]
       }

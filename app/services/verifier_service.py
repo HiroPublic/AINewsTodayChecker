@@ -7,6 +7,7 @@ import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
+from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, Field, ValidationError
 
@@ -20,6 +21,7 @@ from app.services.claim_parser import parse_claim
 
 
 LOGGER = logging.getLogger(__name__)
+JST = ZoneInfo("Asia/Tokyo")
 
 MISLEADING_TERMS = ("完全統合", "専用", "正式発表", "世界初", "次世代GPU")
 FALSE_TERMS = ("1000万トークン", "50兆トークン")
@@ -54,6 +56,10 @@ Rules:
   - MISLEADING: 20-44
   - FALSE: 0-19
 - UNCONFIRMED should not default to zero just because evidence is missing.
+- Use the explicit Date context in the user prompt. For yearless Japanese dates like `5月22日`,
+  interpret the year from that Date context and verify against the full date, not an older same-month/day event.
+- If only older evidence exists, state that no matching evidence was found for the full target date and treat
+  the older evidence only as stale-news evidence.
 - Never output prose outside JSON.
 """
 
@@ -90,6 +96,9 @@ Allowed labels:
 - UNCONFIRMED
 - MISLEADING
 - FALSE
+
+Date context:
+{date_context}
 
 Article title:
 {title}
@@ -164,6 +173,7 @@ class EpisodeVerifierService:
 
     def _verify_with_model(self, episode: Episode, client: EvaluationClient) -> list[ClaimVerdict]:
         user_prompt = USER_PROMPT_TEMPLATE.format(
+            date_context=_build_date_context(episode),
             title=episode.title,
             url=episode.episode_url,
             text=episode.summary_text,
@@ -175,6 +185,8 @@ class EpisodeVerifierService:
                 "user_prompt": user_prompt,
                 "episode_title": episode.title,
                 "episode_url": episode.episode_url,
+                "episode_published_at": episode.published_at.isoformat(),
+                "date_context": _build_date_context(episode),
             },
         )
         try:
@@ -350,3 +362,29 @@ def _resolve_display_label_ja(label: VerdictLabel, display_label_ja: str) -> str
         VerdictLabel.FALSE: "誤り",
     }
     return defaults[label]
+
+
+def _build_date_context(episode: Episode) -> str:
+    """Build explicit temporal guidance for yearless dates in podcast summaries."""
+
+    published_jst = episode.published_at.astimezone(JST)
+    reference_year = published_jst.year
+    reference_date = published_jst.date().isoformat()
+    return "\n".join(
+        [
+            f"- Episode published date in Asia/Tokyo: {reference_date}",
+            f"- Reference year for yearless Japanese dates in this article: {reference_year}",
+            (
+                f"- Treat dates such as `5月22日` or `（5月22日）` as {reference_year}-05-22 "
+                "unless the article explicitly states a different year."
+            ),
+            (
+                "- When verifying freshness or stale-news status, search and reason using the full "
+                f"{reference_year}-MM-DD date. Do not substitute 2024 or 2025 for yearless dates."
+            ),
+            (
+                "- If only older same-month/day evidence exists, say that no matching evidence was found "
+                "for the target full date and use the older evidence only to explain stale-news risk."
+            ),
+        ]
+    )

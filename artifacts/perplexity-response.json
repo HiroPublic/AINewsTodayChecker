@@ -1,83 +1,69 @@
 {
   "ok": true,
-  "raw_response": "{\n  \"overall_score\": 25,\n  \"overall_verdict\": \"MISLEADING\",\n  \"needs_attention\": true,\n  \"overall_summary\": \"記事は3月28日のニュースとして5つの主張を挙げるが、いずれも検索結果で裏付けられず、ソフトバンクの既存AI基盤を「伊邪那岐」と誤称した可能性が高い。Claude 4.5や他項目も未確認で、未来推測を現在ニュースとして提示し誤解を招く。\",\n  \"claims\": [\n    {\n      \"claim_text\": \"ソフトバンク、国内最大級のAI計算基盤「伊邪那岐」を稼働（3月28日）\",\n      \"label\": \"MISLEADING\",\n      \"display_label_ja\": \"誤解を招く\",\n      \"score\": 30,\n      \"claim_reason\": \"ソフトバンクは2023年9月から国内最大級AI基盤を稼働、2024年10月に拡張（NVIDIA GPU 4000基）したが、「伊邪那岐」は開発中プロジェクト名で2026年量産予定。3月28日稼働の証拠なし。[3][4][5]\",\n      \"risk_flags\": [\"exaggeration\", \"rumor-as-fact\"],\n      \"evidence\": [\n        {\n          \"title\": \"ソフトバンク株式会社 第44回定時株主総会 書き起こし\",\n          \"url\": \"https://group.softbank/system/files/pdf/ir/investors/shareholders/2024/shareholders-meeting_44_08_ja.pdf\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"国内最大級のAI計算基盤において約4,000基の「NVIDIA Hopper GPU ...\",\n          \"url\": \"https://www.softbank.jp/corp/news/press/sbkk/2024/20241031_03/\",\n          \"source_type\": \"primary\"\n        },\n        {\n          \"title\": \"【大解説】ABBを買収したことでソフトバンクのフィジカルAI戦略は ...\",\n          \"url\": \"https://blogs.itmedia.co.jp/serial/2025/12/abbai.html\",\n          \"source_type\": \"secondary\"\n        }\n      ]\n    },\n    {\n      \"claim_text\": \"Anthropic、自律推論を強化したClaude 4.5を緊急公開（3月28日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果にClaude 4.5の公開情報一切なし。Anthropicの最新モデル言及なく、3月28日緊急公開の証拠欠如。噂レベルの可能性。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"インテル、光演算を用いたAI専用チップ「Lumina」を量産開始（3月27日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 45,\n      \"claim_reason\": \"検索結果にIntelの「Lumina」チップの言及なし。光演算AIチップ量産開始の公式証拠欠如。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"YouTube、AIによる「文化適応型」自動吹き替え機能を導入（3月28日）\",\n      \"label\": \"UNCONFIRMED\",\n      \"display_label_ja\": \"未確認\",\n      \"score\": 50,\n      \"claim_reason\": \"検索結果にYouTubeの文化適応型自動吹き替え機能導入の情報なし。3月28日の証拠欠如。\",\n      \"risk_flags\": [\"rumor-as-fact\"],\n      \"evidence\": []\n    },\n    {\n      \"claim_text\": \"EU、AI法に基づき「個人識別・プロファイリング」を全面禁止（3月28日）\",\n      \"label\": \"FALSE\",\n      \"display_label_ja\": \"誤り\",\n      \"score\": 10,\n      \"claim_reason\": \"EU AI法は高リスクAIを規制するが、個人識別・プロファイリングを全面禁止せず、リスクベース規制。3月28日全面禁止の証拠なし。\",\n      \"risk_flags\": [\"exaggeration\"],\n      \"evidence\": []\n    }\n  ]\n}",
+  "raw_response": "{\"overall_score\":52,\"overall_verdict\":\"UNCONFIRMED\",\"needs_attention\":true,\"overall_summary\":\"記事は3件の短いニュース要約で、一次情報の裏取りが不足しています。ソフトバンクの全国展開方針、Anthropicの新API、Appleの6月Siri発表はいずれも断定には弱く、現時点では未確認です。\",\"claims\":[{\"claim_text\":\"ソフトバンク、AIデータセンターを日本全国に展開へ\",\"label\":\"UNCONFIRMED\",\"display_label_ja\":\"未確認\",\"score\":58,\"claim_reason\":\"ソフトバンクがAI向けデータセンター構想を持つ可能性はあるが、日本全国展開を2026-05-22時点で確認できる一次情報は示されていない。\",\"risk_flags\":[\"weak_sourcing\",\"headline_style\",\"needs_primary_source\"],\"evidence\":[{\"title\":\"ソフトバンクグループ 公式IR / ニュースリリース\",\"url\":\"https://group.softbank/\",\"source_type\":\"primary\"}]},{\"claim_text\":\"Anthropic、Claudeの企業向け新APIをリリース\",\"label\":\"UNCONFIRMED\",\"display_label_ja\":\"未確認\",\"score\":54,\"claim_reason\":\"Anthropicの製品更新はあり得るが、2026-05-22に企業向け新APIを出したという確認可能な公式発表を提示できない。\",\"risk_flags\":[\"weak_sourcing\",\"needs_primary_source\",\"date_specificity\"],\"evidence\":[{\"title\":\"Anthropic News / Releases\",\"url\":\"https://www.anthropic.com/news\",\"source_type\":\"primary\"}]},{\"claim_text\":\"Apple、生成AI搭載の次世代Siriを6月に発表か\",\"label\":\"UNCONFIRMED\",\"display_label_ja\":\"未確認\",\"score\":49,\"claim_reason\":\"AppleのSiri刷新は長く報じられているが、『6月に発表か』は推測表現で、2026年6月発表の確証はない。\",\"risk_flags\":[\"rumor\",\"speculation\",\"weak_sourcing\",\"date_specificity\"],\"evidence\":[{\"title\":\"Apple Newsroom\",\"url\":\"https://www.apple.com/newsroom/\",\"source_type\":\"primary\"}]}]}",
   "parsed_response": {
-    "overall_score": 25,
-    "overall_verdict": "MISLEADING",
+    "overall_score": 52,
+    "overall_verdict": "UNCONFIRMED",
     "needs_attention": true,
-    "overall_summary": "記事は3月28日のニュースとして5つの主張を挙げるが、いずれも検索結果で裏付けられず、ソフトバンクの既存AI基盤を「伊邪那岐」と誤称した可能性が高い。Claude 4.5や他項目も未確認で、未来推測を現在ニュースとして提示し誤解を招く。",
+    "overall_summary": "記事は3件の短いニュース要約で、一次情報の裏取りが不足しています。ソフトバンクの全国展開方針、Anthropicの新API、Appleの6月Siri発表はいずれも断定には弱く、現時点では未確認です。",
     "claims": [
       {
-        "claim_text": "ソフトバンク、国内最大級のAI計算基盤「伊邪那岐」を稼働（3月28日）",
-        "label": "MISLEADING",
-        "display_label_ja": "誤解を招く",
-        "score": 30,
-        "claim_reason": "ソフトバンクは2023年9月から国内最大級AI基盤を稼働、2024年10月に拡張（NVIDIA GPU 4000基）したが、「伊邪那岐」は開発中プロジェクト名で2026年量産予定。3月28日稼働の証拠なし。[3][4][5]",
+        "claim_text": "ソフトバンク、AIデータセンターを日本全国に展開へ",
+        "label": "UNCONFIRMED",
+        "display_label_ja": "未確認",
+        "score": 58,
+        "claim_reason": "ソフトバンクがAI向けデータセンター構想を持つ可能性はあるが、日本全国展開を2026-05-22時点で確認できる一次情報は示されていない。",
         "risk_flags": [
-          "exaggeration",
-          "rumor-as-fact"
+          "weak_sourcing",
+          "headline_style",
+          "needs_primary_source"
         ],
         "evidence": [
           {
-            "title": "ソフトバンク株式会社 第44回定時株主総会 書き起こし",
-            "url": "https://group.softbank/system/files/pdf/ir/investors/shareholders/2024/shareholders-meeting_44_08_ja.pdf",
+            "title": "ソフトバンクグループ 公式IR / ニュースリリース",
+            "url": "https://group.softbank/",
             "source_type": "primary"
-          },
-          {
-            "title": "国内最大級のAI計算基盤において約4,000基の「NVIDIA Hopper GPU ...",
-            "url": "https://www.softbank.jp/corp/news/press/sbkk/2024/20241031_03/",
-            "source_type": "primary"
-          },
-          {
-            "title": "【大解説】ABBを買収したことでソフトバンクのフィジカルAI戦略は ...",
-            "url": "https://blogs.itmedia.co.jp/serial/2025/12/abbai.html",
-            "source_type": "secondary"
           }
         ]
       },
       {
-        "claim_text": "Anthropic、自律推論を強化したClaude 4.5を緊急公開（3月28日）",
+        "claim_text": "Anthropic、Claudeの企業向け新APIをリリース",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "検索結果にClaude 4.5の公開情報一切なし。Anthropicの最新モデル言及なく、3月28日緊急公開の証拠欠如。噂レベルの可能性。",
+        "score": 54,
+        "claim_reason": "Anthropicの製品更新はあり得るが、2026-05-22に企業向け新APIを出したという確認可能な公式発表を提示できない。",
         "risk_flags": [
-          "rumor-as-fact"
+          "weak_sourcing",
+          "needs_primary_source",
+          "date_specificity"
         ],
-        "evidence": []
+        "evidence": [
+          {
+            "title": "Anthropic News / Releases",
+            "url": "https://www.anthropic.com/news",
+            "source_type": "primary"
+          }
+        ]
       },
       {
-        "claim_text": "インテル、光演算を用いたAI専用チップ「Lumina」を量産開始（3月27日）",
+        "claim_text": "Apple、生成AI搭載の次世代Siriを6月に発表か",
         "label": "UNCONFIRMED",
         "display_label_ja": "未確認",
-        "score": 45,
-        "claim_reason": "検索結果にIntelの「Lumina」チップの言及なし。光演算AIチップ量産開始の公式証拠欠如。",
+        "score": 49,
+        "claim_reason": "AppleのSiri刷新は長く報じられているが、『6月に発表か』は推測表現で、2026年6月発表の確証はない。",
         "risk_flags": [
-          "rumor-as-fact"
+          "rumor",
+          "speculation",
+          "weak_sourcing",
+          "date_specificity"
         ],
-        "evidence": []
-      },
-      {
-        "claim_text": "YouTube、AIによる「文化適応型」自動吹き替え機能を導入（3月28日）",
-        "label": "UNCONFIRMED",
-        "display_label_ja": "未確認",
-        "score": 50,
-        "claim_reason": "検索結果にYouTubeの文化適応型自動吹き替え機能導入の情報なし。3月28日の証拠欠如。",
-        "risk_flags": [
-          "rumor-as-fact"
-        ],
-        "evidence": []
-      },
-      {
-        "claim_text": "EU、AI法に基づき「個人識別・プロファイリング」を全面禁止（3月28日）",
-        "label": "FALSE",
-        "display_label_ja": "誤り",
-        "score": 10,
-        "claim_reason": "EU AI法は高リスクAIを規制するが、個人識別・プロファイリングを全面禁止せず、リスクベース規制。3月28日全面禁止の証拠なし。",
-        "risk_flags": [
-          "exaggeration"
-        ],
-        "evidence": []
+        "evidence": [
+          {
+            "title": "Apple Newsroom",
+            "url": "https://www.apple.com/newsroom/",
+            "source_type": "primary"
+          }
+        ]
       }
     ]
   }

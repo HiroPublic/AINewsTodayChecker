@@ -75,8 +75,17 @@ def test_verify_episode_uses_perplexity_response_when_configured(tmp_path) -> No
     assert "system_prompt" in prompt
     assert "Return each `claim_text` in the original Japanese from the target article." in prompt["system_prompt"]
     assert "Judge stale-news status relative to the parenthesized date written at the end of each news item" in prompt["system_prompt"]
+    assert "Use the explicit Date context in the user prompt" in prompt["system_prompt"]
+    assert "older evidence only as stale-news evidence" in prompt["system_prompt"]
     assert "user_prompt" in prompt
     assert "display_label_ja" in prompt["user_prompt"]
+    assert "Date context:" in prompt["user_prompt"]
+    assert "Episode published date in Asia/Tokyo: 2026-03-24" in prompt["user_prompt"]
+    assert "Reference year for yearless Japanese dates in this article: 2026" in prompt["user_prompt"]
+    assert "Do not substitute 2024 or 2025 for yearless dates." in prompt["user_prompt"]
+    assert "older evidence only to explain stale-news risk" in prompt["user_prompt"]
+    assert prompt["episode_published_at"] == "2026-03-24T06:20:00+00:00"
+    assert "Reference year for yearless Japanese dates in this article: 2026" in prompt["date_context"]
     assert response["ok"] is True
     assert "raw_response" in response
     assert response["parsed_response"]["claims"][0]["label"] == "MISLEADING"
